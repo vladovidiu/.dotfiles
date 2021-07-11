@@ -44,6 +44,7 @@ export SHELL=zsh
 export VIMRC=$HOME/.vimrc
 export NVIMRC=$HOME/.config/nvim/init.vim
 export MAKEFLAGS="-j$(nproc)"
+export DOTFILES="$HOME/.dotfiles"
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
