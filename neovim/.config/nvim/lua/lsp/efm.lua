@@ -7,6 +7,7 @@ local eslint = require('lsp.formatters.eslint')
 local prettier = require('lsp.formatters.prettier')
 local black = require('lsp.formatters.black')
 local yapf = require('lsp.formatters.yapf')
+local mypy = require('lsp.formatters.mypy')
 
 local on_attach = function(client)
   if client.resolved_capabilities.document_formatting then
@@ -30,7 +31,7 @@ lspconfig.efm.setup {
       css = {prettier},
       yaml = {prettier},
       json = {prettier, eslint},
-      python = {black, yapf}
+      python = {black, yapf, mypy}
     }
   }
 }
