@@ -46,7 +46,7 @@ export NVIMRC=$HOME/.config/nvim/init.vim
 export MAKEFLAGS="-j$(nproc)"
 export DOTFILES="$HOME/.dotfiles"
 export LANG=en_GB.UTF-8
-export LC_ALL=en_GB.UTF-8
+export LC_ALL=C
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 

@@ -5,6 +5,8 @@ local shellcheck = require('lsp.formatters.shellcheck')
 local luafmt = require('lsp.formatters.luafmt')
 local eslint = require('lsp.formatters.eslint')
 local prettier = require('lsp.formatters.prettier')
+local black = require('lsp.formatters.black')
+local yapf = require('lsp.formatters.yapf')
 
 local on_attach = function(client)
   if client.resolved_capabilities.document_formatting then
@@ -19,7 +21,7 @@ end
 lspconfig.efm.setup {
   on_attach = on_attach,
   init_options = {documentFormatting = true},
-  filetypes = {"lua", "sh", "css", "yaml", "json"},
+  filetypes = {"lua", "sh", "css", "yaml", "json", "py", "python"},
   settings = {
     rootMarkers = {'.git/'},
     languages = {
@@ -27,7 +29,8 @@ lspconfig.efm.setup {
       sh = {shfmt, shellcheck},
       css = {prettier},
       yaml = {prettier},
-      json = {prettier, eslint}
+      json = {prettier, eslint},
+      python = {black, yapf}
     }
   }
 }
