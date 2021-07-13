@@ -107,6 +107,7 @@ We use the [[https://github.com/emacscollective/no-littering/blob/master/no-litt
  help-window-select t            ; focus new help windows when opened
  show-trailing-whitespace nil    ; do not display trailing whitespaces
  tab-width 4                     ; set width for tabs
+ vc-follow-symlinks t            ; follow links
  )
 
 (cd "~/")                           ; cd into home
