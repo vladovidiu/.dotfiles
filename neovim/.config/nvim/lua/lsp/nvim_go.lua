@@ -10,9 +10,9 @@ lspconfig.gopls.setup {
 
     local opts = {silent = true}
 
-    buf_set_keymap("n", "ct", ":GoTest<CR>", opts)
-    buf_set_keymap("n", "cgt", ":GoToTest<CR>", opts)
-    buf_set_keymap("n", "cf", ":Gofmt<CR>", opts)
-    buf_set_keymap("n", "cl", ":Golint<CR>", opts)
+    buf_set_keymap("n", "<leader>ct", ":GoTest<CR>", opts)
+    buf_set_keymap("n", "<leader>cgt", ":GoToTest<CR>", opts)
+    buf_set_keymap("n", "<leader>cf", ":Gofmt<CR>", opts)
+    buf_set_keymap("n", "<leader>cl", ":Golint<CR>", opts)
   end
 }
