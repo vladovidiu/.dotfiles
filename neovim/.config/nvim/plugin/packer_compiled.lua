@@ -110,6 +110,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow"
   },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/packer.nvim"
