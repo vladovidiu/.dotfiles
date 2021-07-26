@@ -15,6 +15,9 @@ Font Global Variables:
 ;; Make frame transparency overridable
 (defvar vt/frame-transparency '(90 . 90))
 
+;; New file location for dotemacs.org
+(defvar vt/config-location "~/.dotfiles/emacs/emacs-configs/emacs-default/")
+
 #+end_src
 
 ** Tips
@@ -228,6 +231,11 @@ Emacs' default buffer placement algorithm is pretty disruptive if you like setti
 							   (mode-line-format . none))))
 		;; right side window
 		("\\*Help.*"
+		 (display-buffer-in-side-window)
+		 (window-width . 0.4)			; See the :hook
+		 (side . right)
+		 (slot . 0))
+		("\\*org-roam*"
 		 (display-buffer-in-side-window)
 		 (window-width . 0.4)			; See the :hook
 		 (side . right)
@@ -708,6 +716,7 @@ This package provides a sort of right-click contextual menu for Emacs, accessed 
   (setq evil-split-window-below t)
   (setq evil-shift-round nil)
   (setq evil-want-C-u-scroll t)
+  (setq evil-undo-system 'undo-fu)
   :config
   (evil-mode 1))
 
@@ -716,6 +725,21 @@ This package provides a sort of right-click contextual menu for Emacs, accessed 
 (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
 #+END_SRC
+
+** Undo-fu
+[[https://github.com/emacsmirror/undo-fu][Undo-fu]] is a simple, stable linear undo with redo for Emacs.
+#+begin_src emacs-lisp
+
+(use-package undo-fu
+  :config
+  (define-key evil-normal-state-map "u" 'undo-fu-only-undo)
+  (define-key evil-normal-state-map "\C-r" 'undo-fu-only-redo))
+
+(use-package undo-fu-session
+  :config
+  (global-undo-fu-session-mode))
+
+#+end_src
 
 ** Evil Collection
 #+BEGIN_SRC emacs-lisp
@@ -847,24 +871,25 @@ Font faces
 (defun vt/org-font-setup ()
   ;; Replace list hyphen with dot
   (font-lock-add-keywords 'org-mode
-                          '(("^ *\\([-]\\) "
-                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+						  '(("^ *\\([-]\\) "
+							 (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
   ;; Set faces for heading levels
+  (set-face-attribute 'org-document-title nil :font "Iosevka Aile" :weight 'bold :height 1.3)
   (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
-                  (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "Iosevka Aile" :weight 'regular :height (cdr face)))
+				  (org-level-2 . 1.1)
+				  (org-level-3 . 1.05)
+				  (org-level-4 . 1.0)
+				  (org-level-5 . 1.1)
+				  (org-level-6 . 1.1)
+				  (org-level-7 . 1.1)
+				  (org-level-8 . 1.1)))
+	(set-face-attribute (car face) nil :font "Iosevka Aile" :weight 'regular :height (cdr face)))
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
   (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil   :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-code nil :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-table nil :inherit '(shadow fixed-pitch))
   (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
   (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
@@ -886,15 +911,26 @@ Org mode configuration
   :bind (("C-x y" . vt/open-with-mpv))
   :config
   (setq org-ellipsis " ▾"
-        org-hide-emphasis-markers t)
+		org-hide-emphasis-markers t
+		org-src-fontify-natively t
+		org-fontify-quote-and-verse-blocks t
+		org-cycle-separator-lines 2)
   (setq org-edit-src-content-indentation 2
-        org-src-tab-acts-natively t
-        org-src-preserve-indentation t)
+		org-src-tab-acts-natively t
+		org-src-preserve-indentation t)
 
   (setq org-fontify-done-headline t)
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
+
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "C-j") 'org-next-visible-heading)
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "C-k") 'org-previous-visible-heading)
+
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "C-<tab>") 'org-cycle)
+
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "M-j") 'org-metadown)
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "M-k") 'org-metaup)
 
   (setq org-agenda-files (list "~/Documents/org"))
 
@@ -915,17 +951,17 @@ Org mode configuration
 
   (setq org-tag-alist
         '((:startgroup)
-                                        ; Put mutually exclusive tags here
-          (:endgroup)
-          ("@errand" . ?E)
-          ("@home" . ?H)
-          ("@work" . ?W)
-          ("agenda" . ?a)
-          ("planning" . ?p)
-          ("publish" . ?P)
-          ("batch" . ?b)
-          ("note" . ?n)
-          ("idea" . ?i)))
+										; Put mutually exclusive tags here
+		  (:endgroup)
+		  ("@errand" . ?E)
+		  ("@home" . ?H)
+		  ("@work" . ?W)
+		  ("agenda" . ?a)
+		  ("planning" . ?p)
+		  ("publish" . ?P)
+		  ("batch" . ?b)
+		  ("note" . ?n)
+		  ("idea" . ?i)))
 
   (setq org-agenda-custom-commands
         '(("d" "Dashboard"
@@ -1026,6 +1062,39 @@ This package makes it much easier to edit Org documents when org-hide-emphasis-m
 
 (use-package org-appear
   :hook (org-mode . org-appear-mode))
+
+#+end_src
+
+** Org Roam
+[[https://www.orgroam.com/][Org Roam]] is a plain-text personal knowledge management system.
+#+begin_src emacs-lisp
+
+(use-package org-roam
+  :straight t
+  :init
+  (setq org-roam-v2-ack t)
+  :custom
+  (org-roam-directory "~/code/org-roam")
+  (org-roam-completion-eveywhere t)
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+		 ("C-c n f" . org-roam-node-find)
+		 ("C-c n i" . org-roam-node-insert)
+		 :map org-mode-map
+		 ("C-M-i"   . completion-at-point))
+  :config
+  (org-roam-setup))
+
+#+end_src
+
+** Deft
+#+begin_src emacs-lisp
+
+(use-package deft
+  :commands (deft)
+  :config (setq deft-directory "~/code/org-roam"
+				deft-recursive t
+				deft-extensions '("org"))
+  :bind (("C-c n n" . deft)))
 
 #+end_src
 
@@ -1385,6 +1454,15 @@ Eww (the Eacs Web Wowser) is a Web browser written in elisp and based on shr.el.
 
 #+end_src
 
+** Restart Emacs
+[[https://github.com/iqbalansari/restart-emacs][Restart Emacs]] is a simple package to restart emacs from within emacs.
+#+begin_src emacs-lisp
+
+(use-package restart-emacs
+  :straight t)
+
+#+end_src
+
 * Utilities
 Setup org babel
 
@@ -1418,7 +1496,7 @@ Auto tangle  config file
 ;; Automatically tangle our Emacs.org config file when we save it
 (defun vt/org-babel-tangle-config ()
   (when (string-equal (buffer-file-name)
-                      (expand-file-name "dotemacs.org" user-emacs-directory))
+                      (expand-file-name "dotemacs.org" vt/config-location))
     ;; Dynamic scoping to the rescue
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle))))
@@ -1624,7 +1702,6 @@ Major mode for editing [[https://github.com/joshwnj/json-mode][JSON]] files.
   :straight t
   :config
   (setq json-reformat:indent-width 2))
-
 
 #+end_src
 

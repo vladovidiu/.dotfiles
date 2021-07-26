@@ -4,6 +4,9 @@
 ;; Make frame transparency overridable
 (defvar vt/frame-transparency '(90 . 90))
 
+;; New file location for dotemacs.org
+(defvar vt/config-location "~/.dotfiles/emacs/emacs-configs/emacs-default/")
+
 ;; The default is 800 kilobytes.  Measured in bytes.
 (setq gc-cons-threshold (* 50 1000 1000))
 
@@ -62,6 +65,7 @@
  help-window-select t            ; focus new help windows when opened
  show-trailing-whitespace nil    ; do not display trailing whitespaces
  tab-width 4                     ; set width for tabs
+ vc-follow-symlinks t            ; follow links
  )
 
 (cd "~/")                           ; cd into home
@@ -131,6 +135,11 @@
 							   (mode-line-format . none))))
 		;; right side window
 		("\\*Help.*"
+		 (display-buffer-in-side-window)
+		 (window-width . 0.4)			; See the :hook
+		 (side . right)
+		 (slot . 0))
+		("\\*org-roam*"
 		 (display-buffer-in-side-window)
 		 (window-width . 0.4)			; See the :hook
 		 (side . right)
@@ -445,12 +454,22 @@ When NAME is provided, return the value associated to this key."
   (setq evil-split-window-below t)
   (setq evil-shift-round nil)
   (setq evil-want-C-u-scroll t)
+  (setq evil-undo-system 'undo-fu)
   :config
   (evil-mode 1))
 
 ;; Use visual line motions even outside of visual-line-mode buffers
 (evil-global-set-key 'motion "j" 'evil-next-visual-line)
 (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+(use-package undo-fu
+  :config
+  (define-key evil-normal-state-map "u" 'undo-fu-only-undo)
+  (define-key evil-normal-state-map "\C-r" 'undo-fu-only-redo))
+
+(use-package undo-fu-session
+  :config
+  (global-undo-fu-session-mode))
 
 (use-package evil-collection
   :after evil
@@ -525,24 +544,25 @@ When NAME is provided, return the value associated to this key."
 (defun vt/org-font-setup ()
   ;; Replace list hyphen with dot
   (font-lock-add-keywords 'org-mode
-                          '(("^ *\\([-]\\) "
-                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+						  '(("^ *\\([-]\\) "
+							 (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
   ;; Set faces for heading levels
+  (set-face-attribute 'org-document-title nil :font "Iosevka Aile" :weight 'bold :height 1.3)
   (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
-                  (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "Iosevka Aile" :weight 'regular :height (cdr face)))
+				  (org-level-2 . 1.1)
+				  (org-level-3 . 1.05)
+				  (org-level-4 . 1.0)
+				  (org-level-5 . 1.1)
+				  (org-level-6 . 1.1)
+				  (org-level-7 . 1.1)
+				  (org-level-8 . 1.1)))
+	(set-face-attribute (car face) nil :font "Iosevka Aile" :weight 'regular :height (cdr face)))
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
   (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil   :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-code nil :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-table nil :inherit '(shadow fixed-pitch))
   (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
   (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
@@ -559,15 +579,26 @@ When NAME is provided, return the value associated to this key."
   :bind (("C-x y" . vt/open-with-mpv))
   :config
   (setq org-ellipsis " ▾"
-        org-hide-emphasis-markers t)
+		org-hide-emphasis-markers t
+		org-src-fontify-natively t
+		org-fontify-quote-and-verse-blocks t
+		org-cycle-separator-lines 2)
   (setq org-edit-src-content-indentation 2
-        org-src-tab-acts-natively t
-        org-src-preserve-indentation t)
+		org-src-tab-acts-natively t
+		org-src-preserve-indentation t)
 
   (setq org-fontify-done-headline t)
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
+
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "C-j") 'org-next-visible-heading)
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "C-k") 'org-previous-visible-heading)
+
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "C-<tab>") 'org-cycle)
+
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "M-j") 'org-metadown)
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "M-k") 'org-metaup)
 
   (setq org-agenda-files (list "~/Documents/org"))
 
@@ -588,17 +619,17 @@ When NAME is provided, return the value associated to this key."
 
   (setq org-tag-alist
         '((:startgroup)
-                                        ; Put mutually exclusive tags here
-          (:endgroup)
-          ("@errand" . ?E)
-          ("@home" . ?H)
-          ("@work" . ?W)
-          ("agenda" . ?a)
-          ("planning" . ?p)
-          ("publish" . ?P)
-          ("batch" . ?b)
-          ("note" . ?n)
-          ("idea" . ?i)))
+										; Put mutually exclusive tags here
+		  (:endgroup)
+		  ("@errand" . ?E)
+		  ("@home" . ?H)
+		  ("@work" . ?W)
+		  ("agenda" . ?a)
+		  ("planning" . ?p)
+		  ("publish" . ?P)
+		  ("batch" . ?b)
+		  ("note" . ?n)
+		  ("idea" . ?i)))
 
   (setq org-agenda-custom-commands
         '(("d" "Dashboard"
@@ -692,6 +723,28 @@ When NAME is provided, return the value associated to this key."
 
 (use-package org-appear
   :hook (org-mode . org-appear-mode))
+
+(use-package org-roam
+  :straight t
+  :init
+  (setq org-roam-v2-ack t)
+  :custom
+  (org-roam-directory "~/code/org-roam")
+  (org-roam-completion-eveywhere t)
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+		 ("C-c n f" . org-roam-node-find)
+		 ("C-c n i" . org-roam-node-insert)
+		 :map org-mode-map
+		 ("C-M-i"   . completion-at-point))
+  :config
+  (org-roam-setup))
+
+(use-package deft
+  :commands (deft)
+  :config (setq deft-directory "~/code/org-roam"
+				deft-recursive t
+				deft-extensions '("org"))
+  :bind (("C-c n n" . deft)))
 
 (use-package dired
   :ensure nil
@@ -895,6 +948,9 @@ When NAME is provided, return the value associated to this key."
 		   :channels (:after-auth "#emacs"))
 		  )))
 
+(use-package restart-emacs
+  :straight t)
+
 (with-eval-after-load 'org
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -918,7 +974,7 @@ When NAME is provided, return the value associated to this key."
 ;; Automatically tangle our Emacs.org config file when we save it
 (defun vt/org-babel-tangle-config ()
   (when (string-equal (buffer-file-name)
-                      (expand-file-name "dotemacs.org" user-emacs-directory))
+                      (expand-file-name "dotemacs.org" vt/config-location))
     ;; Dynamic scoping to the rescue
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle))))
