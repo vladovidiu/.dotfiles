@@ -806,7 +806,6 @@ When NAME is provided, return the value associated to this key."
   :hook (org-mode . org-appear-mode))
 
 (use-package org-roam
-  :after org
   :straight t
   :init
   (setq org-roam-v2-ack t)

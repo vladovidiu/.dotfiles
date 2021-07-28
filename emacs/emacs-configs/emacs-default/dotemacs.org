@@ -1157,7 +1157,6 @@ This package makes it much easier to edit Org documents when org-hide-emphasis-m
 #+begin_src emacs-lisp
 
 (use-package org-roam
-  :after org
   :straight t
   :init
   (setq org-roam-v2-ack t)
