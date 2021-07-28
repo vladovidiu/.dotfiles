@@ -1,10 +1,11 @@
 local lspconfig = require('lspconfig')
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local on_attach = function()
+  vim.cmd("autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()")
+end
 
 lspconfig.rust_analyzer.setup {
-  capabilities = capabilities,
+  on_attach = on_attach,
   settings = {
     ["rust-analyzer"] = {
       cargo = {loadOutDirsFromCheck = true},
@@ -13,4 +14,4 @@ lspconfig.rust_analyzer.setup {
   }
 }
 
-require("rust-tools").setup {}
+require("rust-tools").setup {on_attach = on_attach}
