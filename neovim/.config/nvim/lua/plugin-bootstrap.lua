@@ -53,4 +53,6 @@ return require('packer').startup(function()
 
   use {'onsails/lspkind-nvim'}
 
+  use {'simrat39/rust-tools.nvim'}
+
 end)

@@ -529,6 +529,7 @@ Mostly taken from the amazing hlissner of doom emacs.
   "Inserts a new heading, table cell or item above the current one."
   (interactive "p")
   (dotimes (_ count) (+org--insert-item 'above)))
+
 #+end_src
 
 ** Key bindings

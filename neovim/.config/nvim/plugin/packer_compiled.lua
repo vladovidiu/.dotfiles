@@ -126,6 +126,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
+  ["rust-tools.nvim"] = {
+    loaded = true,
+    path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/rust-tools.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/telescope.nvim"

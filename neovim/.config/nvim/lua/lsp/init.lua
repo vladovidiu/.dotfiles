@@ -3,6 +3,7 @@ require('lsp.sumneko_lua')
 require('lsp.efm')
 require('lsp.nvim_go')
 require('lsp.pyright')
+require('lsp.rust')
 
 vim.fn.sign_define("LspDiagnosticsSignError",
                    {text = "", texthl = "GruvboxRed"})
