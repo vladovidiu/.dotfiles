@@ -825,7 +825,8 @@ When NAME is provided, return the value associated to this key."
   :commands (deft)
   :config (setq deft-directory "~/code/org-roam"
 				deft-recursive t
-				deft-extensions '("org"))
+				deft-extensions '("org")
+				deft-use-filename-as-title t)
   :bind (("C-c n n" . deft)))
 
 (use-package dired

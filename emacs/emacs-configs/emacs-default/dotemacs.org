@@ -1181,7 +1181,8 @@ This package makes it much easier to edit Org documents when org-hide-emphasis-m
   :commands (deft)
   :config (setq deft-directory "~/code/org-roam"
 				deft-recursive t
-				deft-extensions '("org"))
+				deft-extensions '("org")
+				deft-use-filename-as-title t)
   :bind (("C-c n n" . deft)))
 
 #+end_src
