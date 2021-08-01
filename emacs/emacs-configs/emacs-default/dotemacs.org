@@ -1187,7 +1187,7 @@ This package makes it much easier to edit Org documents when org-hide-emphasis-m
 
 #+end_src
 
-** Dired 
+** Dired
 Dired is a built-in file manager for Emacs that does some pretty amazing things!  Here are some key bindings you should try out:
 
 *** Key Bindings
@@ -1376,7 +1376,7 @@ An RSS newsfeed reader for Emacs.
 
 #+end_src
 
-** Lispy 
+** Lispy
 Here are packages that are useful across different Lisp and Scheme implementations: 
 
 #+begin_src emacs-lisp
