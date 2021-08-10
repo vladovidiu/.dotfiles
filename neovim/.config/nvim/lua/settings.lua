@@ -21,6 +21,8 @@ utils.opt('o', 'termguicolors', true)
 utils.opt('o', 'showmode', false)
 utils.opt('o', 'colorcolumn', '80')
 utils.opt('o', 'updatetime', 50)
+utils.opt('o', 'splitright', true)
+utils.opt('o', 'splitbelow', true)
 
 utils.opt('w', 'listchars',
           'tab:»\\ ,extends:›,precedes:‹,nbsp:·,trail:·,eol:↲')

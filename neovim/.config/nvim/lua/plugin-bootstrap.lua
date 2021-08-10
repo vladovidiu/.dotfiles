@@ -32,6 +32,8 @@ return require('packer').startup(function()
     run = ':TSUpdate'
   }
 
+  use {'nvim-treesitter/playground'}
+
   use {'hrsh7th/nvim-compe'}
   use {'svermeulen/vimpeccable'}
 
