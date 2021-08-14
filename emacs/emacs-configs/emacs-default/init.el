@@ -665,15 +665,16 @@ When NAME is provided, return the value associated to this key."
 		org-hide-emphasis-markers t
 		org-src-fontify-natively t
 		org-fontify-quote-and-verse-blocks t
-		org-cycle-separator-lines 2)
-  (setq org-edit-src-content-indentation 2
+		org-return-follows-link t
+		org-cycle-separator-lines 2
+		org-edit-src-content-indentation 2
 		org-src-tab-acts-natively t
-		org-src-preserve-indentation t)
-
-  (setq org-fontify-done-headline t)
-  (setq org-agenda-start-with-log-mode t)
-  (setq org-log-done 'time)
-  (setq org-log-into-drawer t)
+		org-src-preserve-indentation t
+		org-fontify-done-headline t
+		org-agenda-start-with-log-mode t
+		org-log-done 'time
+		org-log-into-drawer t
+		org-roam-completion-everywhere t)
 
   (evil-define-key '(normal insert visual) org-mode-map (kbd "C-j") 'org-next-visible-heading)
   (evil-define-key '(normal insert visual) org-mode-map (kbd "C-k") 'org-previous-visible-heading)
@@ -700,7 +701,7 @@ When NAME is provided, return the value associated to this key."
 
   (setq org-tag-alist
         '((:startgroup)
-										; Put mutually exclusive tags here
+		  ; Put mutually exclusive tags here
 		  (:endgroup)
 		  ("@errand" . ?E)
 		  ("@home" . ?H)
@@ -812,6 +813,22 @@ When NAME is provided, return the value associated to this key."
   :custom
   (org-roam-directory "~/code/org-roam")
   (org-roam-completion-eveywhere t)
+  (org-roam-capture-templates
+   '(("d" "default" plain
+	  "%?"
+	  :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+	  :unnarowed t)
+	 ("l" "programming language" plain
+	  "* Characteristics\n\n- Family: %?\n- Inspired by: \n\n* Reference:\n\n"
+	  :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+	  :unnarrowed t)
+	 ("b" "book notes" plain
+	  "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Summary\n\n%?"
+	  :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+	  :unnarrowed t)
+	 ("p" "project" plain "* Goals\n\n%?\n\n* Tasks\n\n** TODO Add initial tasks\n\n* Dates\n\n"
+	  :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: Project")
+	  :unnarrowed t)))
   :bind (("C-c n l" . org-roam-buffer-toggle)
 		 ("C-c n f" . org-roam-node-find)
 		 ("C-c n i" . org-roam-node-insert)

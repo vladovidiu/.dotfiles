@@ -37,8 +37,7 @@ source $ZSH/oh-my-zsh.sh
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export DOOMPATH=$HOME/emacs-configs/doom-emacs/bin
-export CARGOPATH=$HOME/.cargo/bin
-export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin:$HOME/.bin:$HOME/.gem/ruby/2.6.0/bin:$HOME/.local/bin:$DOOMPATH:$CARGOPATH
+export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin:$HOME/.bin:$HOME/.gem/ruby/2.6.0/bin:$HOME/.local/bin:$DOOMPATH
 export VISUAL="emacsclient -c -a emacs"
 export EDITOR="emacsclient -c -a emacs"
 export SHELL=zsh
