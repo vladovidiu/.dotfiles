@@ -33,6 +33,7 @@ fpath=("$HOME/.zfunctions" $fpath)
 fpath+=("$PWD/functions")
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/.cargo/env
 
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin

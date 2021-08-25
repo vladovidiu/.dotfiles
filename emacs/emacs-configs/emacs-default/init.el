@@ -1214,5 +1214,30 @@ When NAME is provided, return the value associated to this key."
   :config
   (setq json-reformat:indent-width 2))
 
+(use-package rustic
+  :straight t
+  :bind (:map rustic-mode-map
+			  ("M-j" . lsp-ui-imenu)
+			  ("M-?" . lsp-find-references)
+			  ("C-c C-c l" . flycheck-list-errors)
+			  ("C-c C-c a" . lsp-execute-code-action)
+			  ("C-c C-c r" . lsp-rename)
+			  ("C-c C-c q" . lsp-workspace-restart)
+			  ("C-c C-c Q" . lsp-workspace-shutdown)
+			  ("C-c C-c s" . lsp-rust-analyzer-status))
+  :config
+  (setq rustic-format-on-save t)
+  (setq lsp-rust-analyzer-server-display-inlay-hints t)
+  (add-hook 'rustic-mode-hook 'vt/rustic-mode-hook))
+
+
+(defun vt/rustic-mode-hook ()
+  ;; so that run C-c C-c C-r works without having to confirm, but don't try to
+  ;; save rust buffers that are not file visiting. Once
+  ;; https://github.com/brotzeit/rustic/issues/253 has been resolved this should
+  ;; no longer be necessary.
+  (when buffer-file-name
+    (setq-local buffer-save-without-query t)))
+
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 2 1000 1000))
