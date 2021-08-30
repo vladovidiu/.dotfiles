@@ -1191,12 +1191,6 @@ When NAME is provided, return the value associated to this key."
   :config
   (apheleia-global-mode 1))
 
-(use-package prettier-js
-  ;; :hook ((js2-mode . prettier-js-mode)
-  ;;        (typescript-mode . prettier-js-mode))
-  :config
-  (setq prettier-js-show-errors nil))
-
 (progn
   (define-derived-mode typescript-tsx-mode web-mode "TypeScript-tsx")
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-tsx-mode)))

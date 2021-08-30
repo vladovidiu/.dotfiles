@@ -4,7 +4,7 @@ local on_attach = function(_, bufnr)
   end
 
   local opts = {silent = true}
-  buf_set_keymap('n', '<leader>f', ':lua vim.lsp.buf.formatting()', opts)
+  buf_set_keymap('n', '<leader>f', ':lua vim.lsp.buf.formatting()<cr>', opts)
   buf_set_keymap('n', '<S-k>', ':RustHoverActions<cr>', opts)
 
   vim.cmd("autocmd BufWritePost <buffer> :lua vim.lsp.buf.formatting()")
@@ -16,7 +16,7 @@ local opts = {
     autoSetHints = true,
 
     -- Whether to show hover actions inside the hover window
-    -- This overrides the default hover handler 
+    -- This overrides the default hover handler
     hover_with_actions = true,
 
     runnables = {
