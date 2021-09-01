@@ -1,0 +1,12 @@
+add-highlighter global/ number-lines -hlcursor
+add-highlighter global/ show-whitespaces
+set-option global ui_options ncurses_assistant=dilbert
+
+source ~/.config/kak/colors/ayu-dark.kak
+
+set-option global tabstop 4
+set-option global indentwidth 0
+set-option global modelinefmt '%val{bufname} %val{cursor_line}:%val{cursor_char_column} {{context_info}} {{mode_info}}'
+set-option global autoreload yes
+set-option global ui_options ncurses_assistant=none
+

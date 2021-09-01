@@ -77,6 +77,7 @@ eval "$(starship init zsh)"
 alias la="exa -al --git"
 alias cat="bat"
 alias git_prune="git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d"
+alias sudo="doas"
 
 # NNN
 export NNN_PLUG='o:fzopen;c:fcd;j:jump;p:preview-tui;t:preview-tabbed;i:imgview;v:vidthumb;d:dragdrop;'
