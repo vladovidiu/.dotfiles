@@ -482,7 +482,7 @@ When NAME is provided, return the value associated to this key."
 (use-package embark
   :straight t
   :bind
-  (("C-S-a" . embark-act)	  ;; pick some comfortable binding
+  (("C-;" . embark-act)	  ;; pick some comfortable binding
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
   :init
   (setq prefix-help-command #'embark-prefix-help-command))
@@ -1103,6 +1103,9 @@ When NAME is provided, return the value associated to this key."
   :custom (lsp-headerline-breadcrumb-enable nil)
   :config
   (lsp-enable-which-key-integration t))
+
+(use-package consult-lsp
+  :straight t)
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)

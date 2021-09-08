@@ -4,6 +4,9 @@ require('lsp.efm')
 require('lsp.nvim_go')
 require('lsp.pyright')
 require('lsp.rust')
+require('lsp.ccls')
+require('lsp.clangd')
+require('lsp.cmake')
 
 vim.fn.sign_define("LspDiagnosticsSignError",
                    {text = "", texthl = "GruvboxRed"})
