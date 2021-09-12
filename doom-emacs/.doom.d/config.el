@@ -58,7 +58,7 @@
   (setq mixed-pitch-set-height t)
   (set-face-attribute 'variable-pitch nil :height 140))
 
-(setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-gruvbox)
 
 (setq display-line-numbers-type nil)
 
