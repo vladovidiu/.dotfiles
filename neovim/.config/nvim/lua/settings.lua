@@ -35,6 +35,7 @@ vim.cmd [[
   set shortmess+=c
   set signcolumn=yes
   let g:netrw_banner=0
+  set clipboard+=unnamedplus
 ]]
 
 utils.create_augroup({
