@@ -7,6 +7,7 @@ require('lsp.rust')
 require('lsp.ccls')
 require('lsp.clangd')
 require('lsp.cmake')
+require('lsp.ruby')
 
 vim.fn.sign_define("LspDiagnosticsSignError",
                    {text = "", texthl = "GruvboxRed"})

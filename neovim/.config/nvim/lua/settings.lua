@@ -41,3 +41,5 @@ vim.cmd [[
 utils.create_augroup({
   {'BufWritePre', '*.lua', 'lua vim.lsp.buf.formatting_sync(nil, 100)'}
 }, 'luafmt')
+
+DATA_PATH = vim.fn.stdpath('data')

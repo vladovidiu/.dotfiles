@@ -38,7 +38,8 @@ source $HOME/.cargo/env
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export DOOMPATH=$HOME/emacs-configs/doom-emacs/bin
-export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin:$HOME/.bin:$HOME/.gem/ruby/2.6.0/bin:$HOME/.local/bin:$DOOMPATH
+export RUBY_PATH=$HOME/.local/share/gem/ruby/3.0.0/bin
+export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin:$HOME/.bin:$HOME/.gem/ruby/2.6.0/bin:$HOME/.local/bin:$DOOMPATH:$RUBY_PATH
 export VISUAL="emacsclient -c -a emacs"
 export EDITOR="emacsclient -c -a emacs"
 export SHELL=zsh
@@ -48,6 +49,7 @@ export MAKEFLAGS="-j$(nproc)"
 export DOTFILES="$HOME/.dotfiles"
 export LANG=en_GB.UTF-8
 export LC_ALL=en_GB.UTF-8
+export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
 export TERM=screen-256color
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
