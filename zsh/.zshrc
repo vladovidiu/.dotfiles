@@ -38,8 +38,8 @@ source $HOME/.cargo/env
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export DOOMPATH=$HOME/emacs-configs/doom-emacs/bin
-export RUBY_PATH=$HOME/.local/share/gem/ruby/3.0.0/bin
-export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin:$HOME/.bin:$HOME/.gem/ruby/2.6.0/bin:$HOME/.local/bin:$DOOMPATH:$RUBY_PATH
+export LUAROCKS_BIN=$HOME/.luarocks/bin
+export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin:$HOME/.bin:$HOME/.local/bin:$DOOMPATH:$LUAROCKS_BIN
 export VISUAL="emacsclient -c -a emacs"
 export EDITOR="emacsclient -c -a emacs"
 export SHELL=zsh
@@ -94,5 +94,3 @@ GUIX_PROFILE="/home/vladovidiu/.config/guix/current"
 
 GUIX_PROFILE="/home/vladovidiu/.guix-profile"
 . "$GUIX_PROFILE/etc/profile"
-
-export PATH=/home/vladovidiu/.luarocks/bin:$PATH
