@@ -33,12 +33,10 @@
     haskellPackages.nixfmt
     shfmt
 
-	# LSP
-	solargraph
+    # LSP
+    solargraph
 
     # tools
     graphviz
-
-	# languages
   ];
 }
