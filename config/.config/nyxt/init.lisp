@@ -22,3 +22,5 @@
 (define-configuration nyxt/blocker-mode:blocker-mode ((glyph "β")))
 (define-configuration nyxt/reduce-tracking-mode:reduce-tracking-mode
 	((glyph "τ")))
+
+(setf (uiop:getenv "WEBKIT_DISABLE_COMPOSITING_MODE") "1")
