@@ -32,7 +32,9 @@ return require('packer').startup(function()
   use {'hrsh7th/vim-vsnip'}
 
   use {'neovim/nvim-lspconfig'}
-  use {'glepnir/lspsaga.nvim'}
+
+  use {'RishabhRD/popfix'}
+  use {'RishabhRD/nvim-lsputils'}
 
   use {
     'nvim-treesitter/nvim-treesitter',
