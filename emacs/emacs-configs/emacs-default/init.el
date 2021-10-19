@@ -466,6 +466,13 @@ When NAME is provided, return the value associated to this key."
   :bind (:map flycheck-command-map
 			  ("!" . consult-flycheck)))
 
+(use-package consult-dir
+  :straight t
+  :bind (("C-x C-d" . consult-dir)
+		 :map vertico-map
+		 ("C-x C-d" . consult-dir)
+		 ("C-x C-j" . consult-dir-jump-file)))
+
 (vt/leader-keys
   "b" '(:ignore t :which-key "buffer")
   "bb" '(consult-buffer :which-key "list buffers")
@@ -565,6 +572,7 @@ When NAME is provided, return the value associated to this key."
 (use-package which-key
   :defer 0
   :diminish which-key-mode
+  :disabled t
   :config
   (which-key-mode)
   (setq which-key-idle-delay 0.3))
@@ -956,6 +964,14 @@ When NAME is provided, return the value associated to this key."
   "jw" '(avy-goto-word-0 :which-key "jump to word")
   "jl" '(avy-goto-line :which-key "jump to line"))
 
+(use-package ace-window
+  :straight t
+  :config
+  (setq aw-dispatch-always t)
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+
+(global-set-key (kbd "M-o") 'ace-window)
+
 (use-package dashboard
   :disabled t
   :init
@@ -1021,12 +1037,15 @@ When NAME is provided, return the value associated to this key."
 
 (use-package sly
   :straight t
+  :disabled t
   :config
   (setq org-babel-lisp-eval-fn #'sly-eval)
   (setq inferior-lisp-program "/usr/bin/clisp"))
 
 (use-package slime
-  :straight t)
+  :straight t
+  :disabled t
+  )
 
 (defun vt/circe-nickserv-password (server)
   (vt/fetch-password :login "nerevarine" :machine "irc.libera.chat"))
@@ -1100,9 +1119,10 @@ When NAME is provided, return the value associated to this key."
   :hook ((typescript-mode js2-mode web-mode) . lsp)
   :init
   (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
-  :custom (lsp-headerline-breadcrumb-enable nil)
-  :config
-  (lsp-enable-which-key-integration t))
+  :custom (lsp-headerline-breadcrumb-enable nil))
+
+  ;; :config
+  ;; (lsp-enable-which-key-integration t))
 
 (use-package consult-lsp
   :straight t)

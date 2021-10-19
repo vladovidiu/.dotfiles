@@ -24,8 +24,16 @@ return require('packer').startup(function()
     end
   }
 
+  use {'hrsh7th/cmp-nvim-lsp'}
+  use {'hrsh7th/cmp-buffer'}
+  use {'hrsh7th/nvim-cmp'}
+
+  use {'hrsh7th/cmp-vsnip'}
+  use {'hrsh7th/vim-vsnip'}
+
   use {'neovim/nvim-lspconfig'}
   use {'glepnir/lspsaga.nvim'}
+
   use {
     'nvim-treesitter/nvim-treesitter',
     requires = {'p00f/nvim-ts-rainbow'},
@@ -34,7 +42,6 @@ return require('packer').startup(function()
 
   use {'nvim-treesitter/playground'}
 
-  use {'hrsh7th/nvim-compe'}
   use {'svermeulen/vimpeccable'}
 
   use {

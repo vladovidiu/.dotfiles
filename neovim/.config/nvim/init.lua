@@ -5,4 +5,3 @@ require('keybindings')
 require('plugins')
 
 require('lsp')
-

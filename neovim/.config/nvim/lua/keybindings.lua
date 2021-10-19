@@ -19,7 +19,7 @@ utils.map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', lspOpts)
 utils.map('n', '<leader>gd', '<cmd>Lspsaga preview_definition<CR>', lspOpts)
 utils.map('n', 'gs', '<cmd>Lspsaga signature_help<CR>', lspOpts)
 utils.map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', lspOpts)
-utils.map('n', 'K', '<cmd>Lspsaga hover_doc<CR>', lspOpts)
+utils.map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', lspOpts)
 utils.map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', lspOpts)
 utils.map('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', lspOpts)
 utils.map('n', '<leader>rn', '<cmd>Lspsaga rename<CR>', lspOpts)
@@ -30,7 +30,3 @@ utils.map('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', lspOpts)
 utils.map('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', lspOpts)
 utils.map('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', lspOpts)
 
--- Nvim Compe
-local compeOpts = {expr = true, silent = true}
-utils.map('i', '<C-Space>', 'compe#complete()', compeOpts)
-utils.map('i', '<CR>', 'compe#confirm("<CR>")', compeOpts)

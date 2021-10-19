@@ -1,3 +1,6 @@
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
 local on_attach = function(_, bufnr)
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -78,7 +81,7 @@ local opts = {
       },
 
       -- whether the hover action window gets automatically focused
-      auto_focus = false
+      auto_focus = true
     }
   },
 
@@ -87,6 +90,7 @@ local opts = {
   -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
   server = {
     on_attach = on_attach,
+    capabilities = capabilities,
     settings = {
       ["rust-analyzer"] = {
         assist = {importGranularity = "module", importPrefix = "by_self"},

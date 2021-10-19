@@ -90,10 +90,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/null-ls.nvim"
   },
-  ["nvim-compe"] = {
-    loaded = true,
-    path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/nvim-compe"
-  },
   ["nvim-go"] = {
     loaded = true,
     path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/nvim-go"

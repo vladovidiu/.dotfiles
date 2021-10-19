@@ -696,6 +696,13 @@ The focus of [[https://github.com/raxod502/selectrum][Selectrum]] is on providin
   :bind (:map flycheck-command-map
 			  ("!" . consult-flycheck)))
 
+(use-package consult-dir
+  :straight t
+  :bind (("C-x C-d" . consult-dir)
+		 :map vertico-map
+		 ("C-x C-d" . consult-dir)
+		 ("C-x C-j" . consult-dir-jump-file)))
+
 (vt/leader-keys
   "b" '(:ignore t :which-key "buffer")
   "bb" '(consult-buffer :which-key "list buffers")
@@ -858,6 +865,7 @@ Emacs' built in commenting functionality =comment-dwim= (usually bound to =M-;=)
 (use-package which-key
   :defer 0
   :diminish which-key-mode
+  :disabled t
   :config
   (which-key-mode)
   (setq which-key-idle-delay 0.3))
@@ -1435,6 +1443,21 @@ Here are packages that are useful across different Lisp and Scheme implementatio
 
 #+end_src
 
+** Ace Window
+[[https://github.com/abo-abo/ace-window][Ace Window]] - package for selecting a window to switch to.
+
+#+begin_src emacs-lisp
+
+(use-package ace-window
+  :straight t
+  :config
+  (setq aw-dispatch-always t)
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+
+(global-set-key (kbd "M-o") 'ace-window)
+
+#+end_src
+
 ** Dashboard
 An extensible emacs startup screen showing you what’s most important.
 
@@ -1524,12 +1547,15 @@ Eww (the Eacs Web Wowser) is a Web browser written in elisp and based on shr.el.
 
 (use-package sly
   :straight t
+  :disabled t
   :config
   (setq org-babel-lisp-eval-fn #'sly-eval)
   (setq inferior-lisp-program "/usr/bin/clisp"))
 
 (use-package slime
-  :straight t)
+  :straight t
+  :disabled t
+  )
 
 #+end_src
 
@@ -1647,9 +1673,10 @@ The =which-key= integration adds helpful descriptions of the various keys so you
   :hook ((typescript-mode js2-mode web-mode) . lsp)
   :init
   (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
-  :custom (lsp-headerline-breadcrumb-enable nil)
-  :config
-  (lsp-enable-which-key-integration t))
+  :custom (lsp-headerline-breadcrumb-enable nil))
+
+  ;; :config
+  ;; (lsp-enable-which-key-integration t))
 
 (use-package consult-lsp
   :straight t)

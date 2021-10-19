@@ -53,9 +53,12 @@ local on_attach = function(client, bufnr)
   vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
 lspconfig.tsserver.setup {
   on_attach = on_attach,
-
+  capabilities = capabilities,
   filetypes = {
     "typescript", "typescriptreact", "typescript.tsx", "javascript",
     "javascriptreact", "javascript.tsx"
