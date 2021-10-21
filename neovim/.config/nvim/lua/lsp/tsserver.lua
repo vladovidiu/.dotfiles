@@ -46,7 +46,7 @@ local on_attach = function(client, bufnr)
 
   buf_set_keymap('n', 'gs', ':TSLspOrganize<CR>', opts)
   buf_set_keymap('n', 'qq', ':TSLspFixCurrent<CR>', opts)
-  buf_set_keymap('n', 'gr', ':TSLspRenameFile<CR>', opts)
+  buf_set_keymap('n', '<leader>gr', ':TSLspRenameFile<CR>', opts)
   buf_set_keymap('n', 'gi', ':TSLspImportAll<CR>', opts)
 
   vim.cmd("autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()")

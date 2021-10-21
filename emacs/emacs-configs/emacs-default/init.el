@@ -7,7 +7,7 @@
 ;; New file location for dotemacs.org
 (defvar vt/config-location "~/.dotfiles/emacs/emacs-configs/emacs-default/")
 
-;; The default is 800 kilobytes.  Measured in bytes.
+;; The default is 800 kilobytes. Measured in bytes.
 (setq gc-cons-threshold (* 50 1000 1000))
 
 (defun vt/display-startup-time ()
