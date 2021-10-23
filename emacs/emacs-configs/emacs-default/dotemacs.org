@@ -1614,6 +1614,14 @@ Eww (the Eacs Web Wowser) is a Web browser written in elisp and based on shr.el.
 
 #+end_src
 
+** Nix-mode
+#+begin_src emacs-lisp
+
+(use-package nix-mode
+  :mode "\\.nix\\'")
+
+#+end_src
+
 * Utilities
 Setup org babel
 

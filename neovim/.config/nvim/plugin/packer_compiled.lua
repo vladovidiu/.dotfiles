@@ -69,6 +69,30 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  LuaSnip = {
+    loaded = true,
+    path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/LuaSnip"
+  },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/cmp-buffer"
+  },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/cmp-path"
+  },
+  cmp_luasnip = {
+    loaded = true,
+    path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/cmp_luasnip"
+  },
   ["gruvbox-flat.nvim"] = {
     config = { "\27LJ\1\2Ï\1\0\0\2\0\b\0\0174\0\0\0007\0\1\0)\1\2\0:\1\2\0004\0\0\0007\0\1\0003\1\4\0:\1\3\0004\0\0\0007\0\1\0)\1\2\0:\1\5\0004\0\0\0007\0\6\0%\1\a\0>\0\2\1G\0\1\0,        colorscheme gruvbox-flat\n      \bcmd\24gruvbox_transparent\1\3\0\0\vpacker\rterminal\21gruvbox_sidebars\29gruvbox_italic_functions\6g\bvim\0" },
     loaded = true,
@@ -78,10 +102,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
   },
-  ["lspsaga.nvim"] = {
-    loaded = true,
-    path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
-  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/lualine.nvim"
@@ -89,6 +109,10 @@ _G.packer_plugins = {
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/null-ls.nvim"
+  },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/nvim-cmp"
   },
   ["nvim-go"] = {
     loaded = true,
@@ -101,6 +125,10 @@ _G.packer_plugins = {
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+  },
+  ["nvim-lsputils"] = {
+    loaded = true,
+    path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/nvim-lsputils"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -125,6 +153,10 @@ _G.packer_plugins = {
   ["plenary.nvim"] = {
     loaded = true,
     path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+  },
+  popfix = {
+    loaded = true,
+    path = "/home/vladovidiu/.local/share/nvim/site/pack/packer/start/popfix"
   },
   ["popup.nvim"] = {
     loaded = true,

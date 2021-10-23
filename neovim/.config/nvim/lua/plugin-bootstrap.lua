@@ -24,12 +24,14 @@ return require('packer').startup(function()
     end
   }
 
-  use {'hrsh7th/cmp-nvim-lsp'}
-  use {'hrsh7th/cmp-buffer'}
-  use {'hrsh7th/nvim-cmp'}
+  use {'L3MON4D3/LuaSnip', requires = {'rafamadriz/friendly-snippets'}}
 
-  use {'hrsh7th/cmp-vsnip'}
-  use {'hrsh7th/vim-vsnip'}
+  use {'hrsh7th/nvim-cmp'}
+  use {'hrsh7th/cmp-buffer'}
+  use {'hrsh7th/cmp-path'}
+  use {'hrsh7th/cmp-nvim-lua'}
+  use {'hrsh7th/cmp-nvim-lsp'}
+  use {'saadparwaiz1/cmp_luasnip'}
 
   use {'neovim/nvim-lspconfig'}
 
@@ -67,8 +69,14 @@ return require('packer').startup(function()
   use {'simrat39/rust-tools.nvim'}
 
   use {
-    'hoob3rt/lualine.nvim',
+    'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
+
+  use {'arkav/lualine-lsp-progress'}
+
+  use {'norcalli/nvim-colorizer.lua'}
+
+  use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
 
 end)

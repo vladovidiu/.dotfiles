@@ -1083,6 +1083,9 @@ When NAME is provided, return the value associated to this key."
   :after projectile perspective
   :straight t)
 
+(use-package nix-mode
+  :mode "\\.nix\\'")
+
 (with-eval-after-load 'org
   (org-babel-do-load-languages
    'org-babel-load-languages
