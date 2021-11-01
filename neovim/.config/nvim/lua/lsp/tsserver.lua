@@ -1,6 +1,7 @@
 local lspconfig = require('lspconfig')
 
-require("null-ls").setup {}
+require('null-ls').config({})
+require('lspconfig')['null-ls'].setup({})
 
 local on_attach = function(client, bufnr)
   client.resolved_capabilities.document_formatting = false

@@ -32,6 +32,8 @@
     shellcheck
     haskellPackages.nixfmt
     shfmt
+    html-tidy
+    nodePackages.stylelint
 
     # LSP
     solargraph

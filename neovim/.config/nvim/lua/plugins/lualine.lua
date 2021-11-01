@@ -5,7 +5,7 @@ local config = {
   options = {
     lower = true,
     icons_enabled = true,
-    theme = 'gruvbox-material',
+    theme = 'gruvbox',
     padding = 1,
     component_separators = {'', ''},
     section_separators = {'', ''},
@@ -13,7 +13,7 @@ local config = {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch'},
+    lualine_b = {'branch', 'diff'},
     lualine_c = {'filename'},
     lualine_x = {'fileformat', 'filetype'},
     lualine_y = {'progress'},

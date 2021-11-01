@@ -1863,6 +1863,7 @@ Major mode for editing [[https://github.com/joshwnj/json-mode][JSON]] files.
 
 *** Rust
 #+begin_src emacs-lisp
+
 (use-package rustic
   :straight t
   :bind (:map rustic-mode-map
@@ -1887,6 +1888,7 @@ Major mode for editing [[https://github.com/joshwnj/json-mode][JSON]] files.
   ;; no longer be necessary.
   (when buffer-file-name
     (setq-local buffer-save-without-query t)))
+
 #+end_src
 
 * Runtime performance
