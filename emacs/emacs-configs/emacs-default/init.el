@@ -1140,10 +1140,12 @@ When NAME is provided, return the value associated to this key."
 					:repo "minad/corfu"
 					:branch "main")
   :bind (:map corfu-map
-			  ("TAB" . corfu-next)
+			  ("TAB" . corfu-complete)
 			  ("<backtab>" . corfu-previous))
   :custom
   (corfu-cycle t)
+  (corfu-auto t)
+  (corfu-auto-delay 0.1)
   :hook ((prog-mode . corfu-mode)
 		 (shell-mode . corfu-mode)
 		 (org-mode . corfu-mode)
