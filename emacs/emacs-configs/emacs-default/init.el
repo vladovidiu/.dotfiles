@@ -596,11 +596,13 @@ When NAME is provided, return the value associated to this key."
   :init
   (when (file-directory-p "~/code")
     (setq projectile-project-search-path '("~/code")))
-  (setq projectile-switch-project-action #'projectile-dired))
+  (setq projectile-switch-project-action #'projectile-dired)
+  :custom
+  (add-to-list 'projectile-project-root-files "Gemfile"))
 
 (vt/leader-keys
   "p" '(:ignore t :which-key "projectile")
-  "pp" '(projectile-persp-switch-project :which-key "switch project")
+  "pp" '(projectile-switch-project :which-key "switch project")
   "pf" '(project-find-file :which-key "find project file")
   "sp" '(consult-ripgrep :which-key "search in project"))
 
@@ -1072,6 +1074,7 @@ When NAME is provided, return the value associated to this key."
 
 (use-package perspective
   :after projectile
+  :disabled t
   :straight t
   :bind (("C-x k" . persp-kill-buffer*)
 		 ("C-x b" . persp-switch-to-buffer*)
@@ -1081,10 +1084,49 @@ When NAME is provided, return the value associated to this key."
 
 (use-package persp-projectile
   :after projectile perspective
+  :disabled t
   :straight t)
 
 (use-package nix-mode
   :mode "\\.nix\\'")
+
+(defvar-local +electric-indent-words '()
+  "The list of electric words. Typing these will trigger reindentation of the
+current line.")
+
+(use-package electric
+  :config
+  (setq-default electric-indent-chars '(?\n ?\^?))
+  :custom
+  (add-hook 'electric-indent-functions
+			(defun +electric-indent-char-fn (_c)
+			  (when (and (eolp) +electric-indent-words)
+				(save-excursion
+				  (backward-word)
+				  (looking-at-p (concat "\\<" (regexp-opt +electric-indent-words))))))))
+
+
+(defun set-electric! (modes &rest plist)
+  "Declare that WORDS (list of strings) or CHARS (lists of chars) should trigger
+electric indentation.
+Enables `electric-indent-local-mode' in MODES.
+\(fn MODES &key WORDS CHARS)"
+  (declare (indent defun))
+  (dolist (mode (doom-enlist modes))
+	(let ((hook (intern (format "%s-hook" mode)))
+		  (fn (intern (format "+electric--init-%s-h" mode))))
+	  (cond ((null (car-safe plist))
+			 (remove-hook hook fn)
+			 (unintern fn nil))
+			((fset
+			  fn (lambda ()
+				   (when (eq major-mode mode)
+					 (setq-local electric-indent-inhibit nil)
+					 (cl-destructuring-bind (&key chars words) plist
+					   (electric-indent-local-mode 1)
+					   (if chars (setq-local electric-indent-chars chars))
+					   (if words (setq +electric-indent-words words))))))
+			 (add-hook hook fn))))))
 
 (with-eval-after-load 'org
   (org-babel-do-load-languages
@@ -1092,6 +1134,7 @@ When NAME is provided, return the value associated to this key."
    '((emacs-lisp . t)
 	 (lisp . t)
 	 (js . t)
+	 (ruby . t)
 	 (python . t)))
 
   (setq org-confirm-babel-evaluate nil)
@@ -1104,6 +1147,7 @@ When NAME is provided, return the value associated to this key."
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
   (add-to-list 'org-structure-template-alist '("js" . "src js"))
+  (add-to-list 'org-structure-template-alist '("ru" . "src ruby"))
   (add-to-list 'org-structure-template-alist '("lp" . "src lisp")))
 
 ;; Automatically tangle our Emacs.org config file when we save it
@@ -1115,6 +1159,13 @@ When NAME is provided, return the value associated to this key."
       (org-babel-tangle))))
 
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'vt/org-babel-tangle-config)))
+
+;; (setenv "PATH"
+;;   (concat
+;;    "/home/vladovidiu/.rbenv/shims" ":"
+;;    (getenv "PATH")
+;;   )
+;; )
 
 (use-package lsp-mode
   :straight t
@@ -1136,6 +1187,7 @@ When NAME is provided, return the value associated to this key."
   (lsp-ui-doc-position 'bottom))
 
 (use-package corfu
+  :disabled t
   :straight '(corfu :host github
 					:repo "minad/corfu"
 					:branch "main")
@@ -1153,6 +1205,79 @@ When NAME is provided, return the value associated to this key."
 		 (eshell-mode . corfu-mode))
   :config
   (corfu-global-mode))
+
+(use-package company
+  :after lsp-mode
+  :init
+  (global-company-mode)
+  :bind (:map company-active-map
+         ("<tab>" . company-complete-selection))
+        (:map lsp-mode-map
+         ("<tab>" . company-indent-or-complete-common))
+  :custom
+  (add-hook 'global-company-mode-hook #'evil-normalize-keymaps)
+  (setq company-minimum-prefix-length 2
+		company-tooltip-limit 14
+		company-tooltip-align-annotations t
+		company-require-match 'never
+		))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode)
+  :config
+  (setq company-box-show-single-candidate t
+		company-box-backends-colors nil
+		company-box-max-candidates 50
+		company-box-icons-alist 'company-box-icons-all-the-icons
+		;; Move company-box-icons--elisp to the end, because it has a catch-all
+		;; clause that ruins icons from other backends in elisp buffers.
+		company-box-icons-functions
+		(cons #'+company-box-icons--elisp-fn
+			  (delq 'company-box-icons--elisp
+					company-box-icons-functions))
+		company-box-icons-all-the-icons
+		(let ((all-the-icons-scale-factor 0.8))
+		  `((Unknown . ,(all-the-icons-material "find_in_page" :face 'all-the-icons-purple))
+			(Text . ,(all-the-icons-material "text_fields" :face 'all-the-icons-green))
+			(Method . ,(all-the-icons-material "functions" :face 'all-the-icons-red))
+			(Function . ,(all-the-icons-material "functions" :face 'all-the-icons-red))
+			(Constructor . ,(all-the-icons-material "functions" :face 'all-the-icons-red))
+			(Field . ,(all-the-icons-material "functions" :face 'all-the-icons-red))
+			(Variable . ,(all-the-icons-material "adjust" :face 'all-the-icons-blue))
+			(Class . ,(all-the-icons-material "class" :face 'all-the-icons-red))
+			(Interface . ,(all-the-icons-material "settings_input_component" :face 'all-the-icons-red))
+			(Module . ,(all-the-icons-material "view_module" :face 'all-the-icons-red))
+			(Property . ,(all-the-icons-material "settings" :face 'all-the-icons-red))
+			(Unit . ,(all-the-icons-material "straighten" :face 'all-the-icons-red))
+			(Value . ,(all-the-icons-material "filter_1" :face 'all-the-icons-red))
+			(Enum . ,(all-the-icons-material "plus_one" :face 'all-the-icons-red))
+			(Keyword . ,(all-the-icons-material "filter_center_focus" :face 'all-the-icons-red))
+			(Snippet . ,(all-the-icons-material "short_text" :face 'all-the-icons-red))
+			(Color . ,(all-the-icons-material "color_lens" :face 'all-the-icons-red))
+			(File . ,(all-the-icons-material "insert_drive_file" :face 'all-the-icons-red))
+			(Reference . ,(all-the-icons-material "collections_bookmark" :face 'all-the-icons-red))
+			(Folder . ,(all-the-icons-material "folder" :face 'all-the-icons-red))
+			(EnumMember . ,(all-the-icons-material "people" :face 'all-the-icons-red))
+			(Constant . ,(all-the-icons-material "pause_circle_filled" :face 'all-the-icons-red))
+			(Struct . ,(all-the-icons-material "streetview" :face 'all-the-icons-red))
+			(Event . ,(all-the-icons-material "event" :face 'all-the-icons-red))
+			(Operator . ,(all-the-icons-material "control_point" :face 'all-the-icons-red))
+			(TypeParameter . ,(all-the-icons-material "class" :face 'all-the-icons-red))
+			(Template . ,(all-the-icons-material "short_text" :face 'all-the-icons-green))
+			(ElispFunction . ,(all-the-icons-material "functions" :face 'all-the-icons-red))
+			(ElispVariable . ,(all-the-icons-material "check_circle" :face 'all-the-icons-blue))
+			(ElispFeature . ,(all-the-icons-material "stars" :face 'all-the-icons-orange))
+			(ElispFace . ,(all-the-icons-material "format_paint" :face 'all-the-icons-pink)))))
+
+  (add-to-list 'company-box-frame-parameters '(tab-bar-lines . 0))
+
+  (defun +company-box-icons--elisp-fn (candidate)
+	(when (derived-mode-p 'emacs-lisp-mode)
+	  (let ((sym (intern candidate)))
+		(cond ((fboundp sym) 'ElispFunction)
+			  ((boundp sym) 'ElispVariable)
+			  ((featurep sym) 'ElispFeature)
+			  ((facep sym) 'ElispFace))))))
 
 (use-package tree-sitter
   :after evil
@@ -1216,8 +1341,7 @@ When NAME is provided, return the value associated to this key."
   (add-hook 'js2-mode-hook #'vt/set-js-indentation))
 
 (use-package apheleia
-  :config
-  (apheleia-global-mode 1))
+  :hook (typescript-mode . apheleia-mode))
 
 (progn
   (define-derived-mode typescript-tsx-mode web-mode "TypeScript-tsx")
@@ -1260,6 +1384,39 @@ When NAME is provided, return the value associated to this key."
   ;; no longer be necessary.
   (when buffer-file-name
     (setq-local buffer-save-without-query t)))
+
+(use-package ruby-mode
+  :config
+  (setq ruby-insert-encoding-magic-comment nil)
+  :hook (ruby-mode . tree-sitter-hl-mode)
+  :custom
+  (set-electric! 'ruby-mode :words '("else" "end" "elseif")))
+
+(use-package yard-mode
+  :hook ruby-mode)
+
+(use-package rubocop
+  :hook (ruby-mode . rubocop-mode))
+
+(use-package rbenv
+  :config
+  (setq rspec-use-rvm nil)
+  (add-to-list 'exec-path (expand-file-name "shims" rbenv-installation-dir)))
+
+(use-package rake
+  :defer t
+  :init
+  (setq rake-cache-file (concat user-emacs-directory "rake.cache"))
+  (setq rake-completion-system 'default))
+
+(use-package bundler
+  :defer t)
+
+(use-package rspec-mode
+  :mode ("/\\.rspec\\'" . text-mode)
+  :init
+  (setq rspec-use-spring-when-possible nil)
+  (add-hook 'rspec-mode-hook #'evil-normalize-keymaps))
 
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 2 1000 1000))

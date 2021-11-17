@@ -35,9 +35,6 @@
     html-tidy
     nodePackages.stylelint
 
-    # LSP
-    solargraph
-
     # tools
     graphviz
   ];

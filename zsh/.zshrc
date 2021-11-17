@@ -38,8 +38,9 @@ source $HOME/.cargo/env
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export DOOMPATH=$HOME/emacs-configs/doom-emacs/bin
+export RBENV_BIN=$HOME/.rbenv/bin
 export LUAROCKS_BIN=$HOME/.luarocks/bin
-export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin:$HOME/.bin:$HOME/.local/bin:$DOOMPATH:$LUAROCKS_BIN
+export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin:$HOME/.bin:$HOME/.local/bin:$DOOMPATH:$LUAROCKS_BIN:$RBENV_BIN
 export VISUAL="emacsclient -c -a emacs"
 export EDITOR="emacsclient -c -a emacs"
 export SHELL=zsh
@@ -75,6 +76,7 @@ fkill() {
 if [ -e /home/vladovidiu/.nix-profile/etc/profile.d/nix.sh ]; then . /home/vladovidiu/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 eval "$(starship init zsh)"
+eval "$(rbenv init -)"
 
 alias la="exa -al --git"
 alias cat="bat"

@@ -3,8 +3,8 @@ local lspkind = require('lspkind')
 
 cmp.setup({
   sources = {
-    {name = 'nvim_lua'}, {name = 'nvim_lsp', priority = 50}, {name = 'path'},
-    {name = 'vsnip'}, {name = 'buffer'}
+    {name = 'nvim_lua'}, {name = 'nvim_lsp'}, {name = 'path'}, {name = 'vsnip'},
+    {name = 'buffer'}
   },
   mapping = {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),

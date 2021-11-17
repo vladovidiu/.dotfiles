@@ -15,7 +15,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gr', ':TSLspRenameFile<CR>', opts)
   buf_set_keymap('n', 'gi', ':TSLspImportAll<CR>', opts)
 
-  vim.cmd("autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()")
+  vim.cmd("autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting_sync()")
   vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
 end
 
