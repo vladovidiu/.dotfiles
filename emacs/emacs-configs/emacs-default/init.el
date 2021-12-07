@@ -603,7 +603,7 @@ When NAME is provided, return the value associated to this key."
 (vt/leader-keys
   "p" '(:ignore t :which-key "projectile")
   "pp" '(projectile-switch-project :which-key "switch project")
-  "pf" '(project-find-file :which-key "find project file")
+  "pf" '(projectile-find-file :which-key "find project file")
   "sp" '(consult-ripgrep :which-key "search in project"))
 
 (use-package magit
@@ -1160,31 +1160,46 @@ Enables `electric-indent-local-mode' in MODES.
 
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'vt/org-babel-tangle-config)))
 
-;; (setenv "PATH"
-;;   (concat
-;;    "/home/vladovidiu/.rbenv/shims" ":"
-;;    (getenv "PATH")
-;;   )
-;; )
+(setenv "PATH"
+  (concat
+   "/home/vladovidiu/.rbenv/shims" ":"
+   (getenv "PATH")
+  )
+)
 
 (use-package lsp-mode
   :straight t
   :commands (lsp lsp-deferred)
-  :hook ((typescript-mode js2-mode web-mode) . lsp)
+  :hook ((typescript-mode js2-mode web-mode ruby-mode) . lsp)
   :init
-  (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
-  :custom (lsp-headerline-breadcrumb-enable nil))
+  (setq lsp-keymap-prefix "C-c l") ;; Or 'C-l', 's-l'
+  :custom
+  (lsp-headerline-breadcrumb-enable nil)
+  (add-hook 'lsp-completion-mode-hook
+			(defun +lsp-init-company-backends-h ()
+			  (when lsp-completion-mode
+				(set (make-local-variable 'company-backends)
+					 (cons +lsp-company-backends
+						   (remove +lsp-company-backends
+								   (remq 'company-capf company-backends))))))))
 
   ;; :config
   ;; (lsp-enable-which-key-integration t))
 
 (use-package consult-lsp
-  :straight t)
+  :straight t
+  :custom
+  (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
-  :custom
-  (lsp-ui-doc-position 'bottom))
+  :config
+  (setq lsp-ui-peek-enable t
+		lsp-ui-doc-max-height 8
+		lsp-ui-doc-max-width 72
+		lsp-ui-doc-delay 0.75
+		lsp-ui-doc-position 'at-point
+		lsp-ui-sideline-ignore-duplicate t))
 
 (use-package corfu
   :disabled t

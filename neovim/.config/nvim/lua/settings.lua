@@ -11,7 +11,6 @@ utils.opt('b', 'copyindent', true)
 utils.opt('b', 'undofile', true)
 
 utils.opt('o', 'guicursor', '')
-utils.opt('o', 'hidden', true)
 utils.opt('o', 'swapfile', false)
 utils.opt('o', 'backup', false)
 utils.opt('o', 'scrolloff', 4)
