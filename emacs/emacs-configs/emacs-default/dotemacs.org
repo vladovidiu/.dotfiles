@@ -1759,7 +1759,6 @@ The =which-key= integration adds helpful descriptions of the various keys so you
   :custom
   (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols))
 
-
 #+end_src
 
 *** lsp-ui
