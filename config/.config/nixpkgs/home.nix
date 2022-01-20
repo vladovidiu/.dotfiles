@@ -34,6 +34,7 @@
     shfmt
     html-tidy
     nodePackages.stylelint
+    stylua
 
     # tools
     graphviz

@@ -1,7 +1,5 @@
-require('plugin-bootstrap')
-require('settings')
-require('keybindings')
-
-require('plugins')
-
-require('lsp')
+require("plugins-bootstrap")
+require("settings")
+require("keybindings")
+require("lsp")
+require("plugins")
