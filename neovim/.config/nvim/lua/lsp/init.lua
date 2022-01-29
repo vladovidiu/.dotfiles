@@ -4,8 +4,7 @@ if not status_ok then
 	return
 end
 
+require("rust-tools").setup({})
 require("lsp.lsp-installer")
 require("lsp.handlers").setup()
 require("lsp.null-ls")
-
-require("lsp.settings.rust_lsp")

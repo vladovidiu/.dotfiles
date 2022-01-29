@@ -1,0 +1,17 @@
+[user]
+  name = Vlad Tutunea
+  email = vladovidiu.tutunea@gmail.com
+  username = vladovidiu
+
+[core]
+  editor = nvim
+  commitgraph = true
+
+[color]
+  ui = true
+
+[diff]
+  algorith = patience
+
+[github]
+  user = vladovidiu
