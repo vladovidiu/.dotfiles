@@ -7,7 +7,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "path" },
 		{ name = "vsnip" },
-		{ name = "treesitter" },
+		--{ name = "treesitter" },
 		{ name = "buffer" },
 	},
 	mapping = {

@@ -2,3 +2,12 @@ emacs/emacs-configs/emacs-default/eln-cache
 emacs/emacs-configs/emacs-default/etc
 emacs/emacs-configs/emacs-default/straight
 emacs/emacs-configs/emacs-default/var
+emacs/emacs-configs/rational/var
+emacs/emacs-configs/rational/straight
+emacs/emacs-configs/rational/etc
+emacs/emacs-configs/rational/.cache
+emacs/emacs-configs/rational/eln-cache
+emacs/emacs-configs/rational/undo-fu-session/
+emacs/emacs-configs/rational/recentf
+emacs/emacs-configs/rational/history
+emacs/emacs-configs/rational/eshell/

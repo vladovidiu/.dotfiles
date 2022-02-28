@@ -1,5 +1,4 @@
 require("plugins.treesitter")
-require("plugins.lspkind")
 require("plugins.telescope")
 require("plugins.lualine")
 require("plugins.cmp")

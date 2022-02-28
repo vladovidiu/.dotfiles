@@ -44,8 +44,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/vt/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/?.lua;/home/vt/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/?/init.lua;/home/vt/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/?.lua;/home/vt/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/vt/.cache/nvim/packer_hererocks/2.0.5/lib/lua/5.1/?.so"
+local package_path_str = "/home/vt/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/vt/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/vt/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/vt/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/vt/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -115,7 +115,7 @@ _G.packer_plugins = {
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
   ["gruvbox-flat.nvim"] = {
-    config = { "\27LJ\1\2œ\1\0\0\2\0\b\0\0174\0\0\0007\0\1\0)\1\2\0:\1\2\0004\0\0\0007\0\1\0003\1\4\0:\1\3\0004\0\0\0007\0\1\0)\1\2\0:\1\5\0004\0\0\0007\0\6\0%\1\a\0>\0\2\1G\0\1\0,        colorscheme gruvbox-flat\n      \bcmd\24gruvbox_transparent\1\3\0\0\vpacker\rterminal\21gruvbox_sidebars\29gruvbox_italic_functions\6g\bvim\0" },
+    config = { "\27LJ\2\nœ\1\0\0\3\0\b\0\0176\0\0\0009\0\1\0+\1\2\0=\1\2\0006\0\0\0009\0\1\0005\1\4\0=\1\3\0006\0\0\0009\0\1\0+\1\2\0=\1\5\0006\0\0\0009\0\6\0'\2\a\0B\0\2\1K\0\1\0,        colorscheme gruvbox-flat\n      \bcmd\24gruvbox_transparent\1\3\0\0\vpacker\rterminal\21gruvbox_sidebars\29gruvbox_italic_functions\6g\bvim\0" },
     loaded = true,
     path = "/home/vt/.local/share/nvim/site/pack/packer/start/gruvbox-flat.nvim",
     url = "https://github.com/eddyekofo94/gruvbox-flat.nvim"
@@ -220,12 +220,13 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: gruvbox-flat.nvim
 time([[Config for gruvbox-flat.nvim]], true)
-try_loadstring("\27LJ\1\2œ\1\0\0\2\0\b\0\0174\0\0\0007\0\1\0)\1\2\0:\1\2\0004\0\0\0007\0\1\0003\1\4\0:\1\3\0004\0\0\0007\0\1\0)\1\2\0:\1\5\0004\0\0\0007\0\6\0%\1\a\0>\0\2\1G\0\1\0,        colorscheme gruvbox-flat\n      \bcmd\24gruvbox_transparent\1\3\0\0\vpacker\rterminal\21gruvbox_sidebars\29gruvbox_italic_functions\6g\bvim\0", "config", "gruvbox-flat.nvim")
+try_loadstring("\27LJ\2\nœ\1\0\0\3\0\b\0\0176\0\0\0009\0\1\0+\1\2\0=\1\2\0006\0\0\0009\0\1\0005\1\4\0=\1\3\0006\0\0\0009\0\1\0+\1\2\0=\1\5\0006\0\0\0009\0\6\0'\2\a\0B\0\2\1K\0\1\0,        colorscheme gruvbox-flat\n      \bcmd\24gruvbox_transparent\1\3\0\0\vpacker\rterminal\21gruvbox_sidebars\29gruvbox_italic_functions\6g\bvim\0", "config", "gruvbox-flat.nvim")
 time([[Config for gruvbox-flat.nvim]], false)
 if should_profile then save_profiles() end
 
 end)
 
 if not no_errors then
+  error_msg = error_msg:gsub('"', '\\"')
   vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
 end
