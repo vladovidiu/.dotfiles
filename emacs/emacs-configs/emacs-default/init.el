@@ -191,7 +191,9 @@
 
 (use-package modus-themes
   :init
-  (setq modus-themes-completions 'opinionated
+  (setq modus-themes-completions '((matches . (extrabold background))
+								   (selection . (semibold accented))
+								   (popup . (accented)))
         modus-themes-diffs nil
         modus-themes-mixed-fonts t
         modus-themes-fringes 'subtle

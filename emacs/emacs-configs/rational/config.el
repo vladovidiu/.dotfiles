@@ -14,6 +14,9 @@
 (require 'rational-programming)
 (require 'rational-corfu)
 (require 'rational-lisp)
+
+;; Programming Languages
+(require 'rational-go)
 ;; (require 'rational-ruby)
 
 ;; Some personal variables
@@ -45,5 +48,4 @@
 (add-to-list 'default-frame-alist `(alpha . ,vt/frame-transparency))
 
 (load-theme 'modus-vivendi t)
-
 ;;; config.el ends here
