@@ -49,8 +49,8 @@
 (add-hook 'lsp-completion-mode-hook 'vt/corfu-setup-lsp)
 
 ;; Cape
-(add-to-list 'completion-at-point-functions #'cape-file)
-(add-to-list 'completion-at-point-functions #'cape-dabbrev)
+(dolist (backend '(cape-symbol cape-keyword cape-file cape-dabbrev))
+  (add-to-list 'completion-at-point-functions backend))
 
 ;; Kind Icons
 (require 'kind-icon)
@@ -74,4 +74,4 @@
 (add-hook 'corfu-mode-hook #'corfu-doc-mode)
 
 (provide 'rational-corfu)
-;;; rational-corfu.el
+;;; rational-corfu.el ends here

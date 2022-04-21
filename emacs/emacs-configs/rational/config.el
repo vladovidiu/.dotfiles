@@ -14,9 +14,12 @@
 (require 'rational-programming)
 (require 'rational-corfu)
 (require 'rational-lisp)
+(require 'rational-utils)
+(require 'rational-org)
 
 ;; Programming Languages
-(require 'rational-go)
+;; (require 'rational-go)
+;; (require 'rational-typescript)
 ;; (require 'rational-ruby)
 
 ;; Some personal variables
@@ -38,7 +41,6 @@
 (if (daemonp)
 	(add-hook 'after-make-frame-functions
 			  (lambda (frame)
-				(setq doom-modeline-icon t)
 				(with-selected-frame frame
 				  (vt/set-font-faces))))
   (vt/set-font-faces))
