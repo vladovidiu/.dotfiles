@@ -1,31 +1,30 @@
-local utils = require('utils')
+local set_keymap = vim.keymap.set
 
-utils.map('n', '<Space>', '')
-vim.g.mapleader = ' '
+local options = { silent = true }
 
-utils.map('i', 'jk', '<Esc>')
-utils.map('n', '<leader><esc>', ':nohlsearch<CR>')
+vim.g.mapleader = " "
+set_keymap("n", "<Space>", "")
+
+set_keymap("i", "jk", "<Esc>")
 
 -- Telescope
 -- Find files using Telescope command-line sugar.
-utils.map('n', '<leader>pf', '<cmd>Telescope find_files<CR>')
-utils.map('n', '<leader>sp', '<cmd>Telescope live_grep<CR>')
-utils.map('n', '<leader>bb', '<cmd>Telescope buffers<CR>')
-utils.map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>')
+set_keymap("n", "<leader>pf", "<cmd>Telescope find_files<CR>", options)
+set_keymap("n", "<leader>sp", "<cmd>Telescope live_grep<CR>", options)
+set_keymap("n", "<leader>bb", "<cmd>Telescope buffers<CR>", options)
+set_keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", options)
 
 -- Nvim LSP
-local lspOpts = {noremap = true, silent = true}
-utils.map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', lspOpts)
-utils.map('n', '<leader>gd', '<cmd>lua vim.lsp.buf.type_definition<CR>', lspOpts)
-utils.map('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', lspOpts)
-utils.map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', lspOpts)
-utils.map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', lspOpts)
-utils.map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', lspOpts)
-utils.map('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', lspOpts)
-utils.map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', lspOpts)
-utils.map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', lspOpts)
-utils.map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', lspOpts)
-utils.map('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', lspOpts)
-utils.map('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', lspOpts)
-utils.map('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', lspOpts)
-
+set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", options)
+set_keymap("n", "<leader>gd", "<cmd>lua vim.lsp.buf.type_definition<CR>", options)
+set_keymap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", options)
+set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", options)
+set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", options)
+set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", options)
+set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", options)
+set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)
+set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", options)
+set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", options)
+set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", options)
+set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", options)
+set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", options)
