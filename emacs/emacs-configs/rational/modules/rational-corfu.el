@@ -29,7 +29,7 @@
 (customize-set-variable 'corfu-doc-max-height 20)
 
 ;; Start
-(corfu-global-mode 1)
+(global-corfu-mode 1)
 
 ;; Keybindings
 (define-key corfu-map (kbd "TAB") 'corfu-next)
