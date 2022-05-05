@@ -1,44 +1,56 @@
-local utils = require('utils')
+local opt = vim.opt
 
-local indent = 2
+opt.backup = false
+opt.writebackup = false
+opt.clipboard = "unnamedplus"
+opt.completeopt = { "menu", "menuone", "noselect" }
+opt.fileencoding = "utf-8"
+opt.ignorecase = true
+opt.smartcase = true
+opt.pumheight = 20
+opt.smartindent = true
+opt.splitbelow = true
+opt.splitright = true
+opt.swapfile = false
+opt.termguicolors = true
+opt.undofile = true
+opt.undodir = vim.fn.stdpath("cache") .. "/undodir"
+opt.conceallevel = 0
+opt.showmode = false
+opt.scrolloff = 5
+opt.signcolumn = "yes"
+opt.whichwrap = "b,s,<,>,[,],h,l"
 
-utils.opt('b', 'tabstop', indent)
-utils.opt('b', 'softtabstop', indent)
-utils.opt('b', 'shiftwidth', indent)
-utils.opt('b', 'expandtab', true)
-utils.opt('b', 'smartindent', true)
-utils.opt('b', 'copyindent', true)
-utils.opt('b', 'undofile', true)
+opt.list = true
+opt.listchars:append("tab:»\\ ")
+opt.listchars:append("extends:›")
+opt.listchars:append("precedes:‹")
+opt.listchars:append("nbsp:·")
+opt.listchars:append("trail:·")
+opt.listchars:append("eol:↲")
 
-utils.opt('o', 'guicursor', '')
-utils.opt('o', 'swapfile', false)
-utils.opt('o', 'backup', false)
-utils.opt('o', 'scrolloff', 4)
-utils.opt('o', 'completeopt', 'menu,menuone,noselect')
-utils.opt('o', 'undodir', tostring(os.getenv("HOME")) .. "/.vim/undodir")
-utils.opt('o', 'termguicolors', true)
-utils.opt('o', 'showmode', false)
-utils.opt('o', 'colorcolumn', '80')
-utils.opt('o', 'updatetime', 50)
-utils.opt('o', 'splitright', true)
-utils.opt('o', 'splitbelow', true)
+vim.wo.wrap = false
+vim.wo.number = true
+vim.wo.relativenumber = true
+vim.wo.cursorline = true
 
-utils.opt('w', 'listchars',
-          'tab:»\\ ,extends:›,precedes:‹,nbsp:·,trail:·,eol:↲')
-utils.opt('w', 'list', true)
-utils.opt('w', 'number', true)
-utils.opt('w', 'relativenumber', true)
-utils.opt('w', 'wrap', false)
+vim.o.colorcolumn = "80"
+vim.o.updatetime = 50
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
+vim.o.autoindent = true
+vim.bo.copyindent = true
+vim.o.expandtab = true
 
-vim.cmd [[
+vim.g.loaded_machparen = 1
+vim.g.loaded_matchit = 1
+
+vim.g.netrw_banner = 0
+vim.g.netrw_silent = 1
+
+vim.cmd([[
   set shortmess+=c
-  set signcolumn=yes
-  let g:netrw_banner=0
-  set clipboard+=unnamedplus
-]]
+]])
 
-utils.create_augroup({
-  {'BufWritePre', '*.lua', 'lua vim.lsp.buf.formatting_sync(nil, 100)'}
-}, 'luafmt')
-
-DATA_PATH = vim.fn.stdpath('data')
+DATA_PATH = vim.fn.stdpath("data")
