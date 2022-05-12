@@ -104,6 +104,10 @@ return packer.startup(function(use)
 
 	-- Notify
 	use("rcarriga/nvim-notify")
+
+	-- go.nvim
+	use("ray-x/go.nvim")
+
 	-- rust
 	use("simrat39/rust-tools.nvim")
 end)

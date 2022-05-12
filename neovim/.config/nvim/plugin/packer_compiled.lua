@@ -114,6 +114,11 @@ _G.packer_plugins = {
     path = "/home/vt/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  ["go.nvim"] = {
+    loaded = true,
+    path = "/home/vt/.local/share/nvim/site/pack/packer/start/go.nvim",
+    url = "https://github.com/ray-x/go.nvim"
+  },
   ["gruvbox-flat.nvim"] = {
     config = { "\27LJ\2\nœ\1\0\0\3\0\b\0\0176\0\0\0009\0\1\0+\1\2\0=\1\2\0006\0\0\0009\0\1\0005\1\4\0=\1\3\0006\0\0\0009\0\1\0+\1\2\0=\1\5\0006\0\0\0009\0\6\0'\2\a\0B\0\2\1K\0\1\0,        colorscheme gruvbox-flat\n      \bcmd\24gruvbox_transparent\1\3\0\0\vpacker\rterminal\21gruvbox_sidebars\29gruvbox_italic_functions\6g\bvim\0" },
     loaded = true,
