@@ -7,6 +7,8 @@ set_keymap("n", "<Space>", "")
 
 set_keymap("i", "jk", "<Esc>")
 
+set_keymap("n", "<leader><esc>", "<cmd>set nohls<cr>", options)
+
 -- Telescope
 -- Find files using Telescope command-line sugar.
 set_keymap("n", "<leader>pf", "<cmd>Telescope find_files<CR>", options)

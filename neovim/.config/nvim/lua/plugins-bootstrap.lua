@@ -45,13 +45,14 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
 
 	use({
-		"eddyekofo94/gruvbox-flat.nvim",
+		"luisiacc/gruvbox-baby",
 		config = function()
 			vim.g.gruvbox_italic_functions = true
 			vim.g.gruvbox_sidebars = { "packer", "terminal" }
-			vim.g.gruvbox_transparent = true
+			vim.g.gruvbox_baby_transparent_mode = 1
 			vim.cmd([[
-        colorscheme gruvbox-flat
+        colorscheme gruvbox-baby
+        highlight ColorColumn guibg=OrangeRed4
       ]])
 		end,
 	})
@@ -107,6 +108,12 @@ return packer.startup(function(use)
 
 	-- go.nvim
 	use("ray-x/go.nvim")
+
+	-- Float term, codeaction, codelens gui
+	use({ "ray-x/guihua.lua", run = "cd lua/fzy && make" })
+
+	-- Autopairs
+	use("windwp/nvim-autopairs")
 
 	-- rust
 	use("simrat39/rust-tools.nvim")
