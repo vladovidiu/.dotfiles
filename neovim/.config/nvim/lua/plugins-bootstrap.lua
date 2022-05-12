@@ -102,6 +102,8 @@ return packer.startup(function(use)
 	use("nvim-treesitter/playground")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 
+	-- Notify
+	use("rcarriga/nvim-notify")
 	-- rust
 	use("simrat39/rust-tools.nvim")
 end)

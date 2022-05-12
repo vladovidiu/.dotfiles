@@ -20,6 +20,7 @@ opt.showmode = false
 opt.scrolloff = 5
 opt.signcolumn = "yes"
 opt.whichwrap = "b,s,<,>,[,],h,l"
+opt.laststatus = 3
 
 opt.list = true
 opt.listchars:append("tab:»\\ ")
