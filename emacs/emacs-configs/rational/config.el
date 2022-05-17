@@ -17,6 +17,7 @@
 (require 'rational-utils)
 (require 'rational-org)
 (require 'rational-yaml)
+(require 'rational-windows)
 
 ;; Utils
 ;; (require 'rational-sicp)
