@@ -30,6 +30,10 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+;; Use straight.el for use-package expressions
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
+
 (defun rational-ensure-package (package &optional args)
   "Ensure that PACKAGE is installed on the system, via
 straight.el."

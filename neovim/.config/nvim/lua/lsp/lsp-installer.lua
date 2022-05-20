@@ -4,8 +4,12 @@ if not status_ok then
 end
 
 local lspconfig = require("lspconfig")
-require("go").setup()
 local servers = { "jsonls", "gopls", "sumneko_lua" }
+
+require("go").setup({
+	test_runner = "richgo",
+	run_in_floaterm = true,
+})
 
 lsp_installer.setup({
 	ensure_installed = servers,

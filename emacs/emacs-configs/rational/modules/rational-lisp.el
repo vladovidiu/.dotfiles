@@ -5,7 +5,6 @@
 ;; Install dependencies
 (straight-use-package 'lispy)
 (straight-use-package 'lispyville)
-(straight-use-package 'sly)
 
 ;;; Lispy
 (require 'lispy)
@@ -21,14 +20,18 @@
 (add-hook 'lispy-mode-hook #'lispyville-mode)
 
 ;;; Sly
-(require 'sly)
-
-;; Config
-(setq inferior-lisp-program "sbcl")
-(setq sly-symbol-completion-mode nil)
-
-;; Hooks
-(add-hook 'sly-mode-hook #'corfu-mode)
+(use-package sly
+  :straight t
+  :commands (sly)
+  :config
+  (setq sly-lisp-implementations
+		`(
+		  (roswell ("ros" "run"))
+		  (roswell-sbcl ("ros" "-L" "sbcl" "-Q" "-l" "~/.sbclrc" "run") :coding-system utf-8-unix)))
+  (setq sly-default-lisp 'roswell)
+  (setq sly-symbol-completion-mode t)
+  (setq org-babel-lisp-eval-fn #'sly-eval)
+  (setq inferior-lisp-program "ros run"))
 
 (provide 'rational-lisp)
 ;;; rational-lisp.el ends here

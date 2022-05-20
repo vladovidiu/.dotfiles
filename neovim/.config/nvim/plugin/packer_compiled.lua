@@ -119,11 +119,11 @@ _G.packer_plugins = {
     path = "/home/vt/.local/share/nvim/site/pack/packer/start/go.nvim",
     url = "https://github.com/ray-x/go.nvim"
   },
-  ["gruvbox-baby"] = {
-    config = { "\27LJ\2\nˆ\2\0\0\3\0\b\0\0176\0\0\0009\0\1\0+\1\2\0=\1\2\0006\0\0\0009\0\1\0005\1\4\0=\1\3\0006\0\0\0009\0\1\0)\1\1\0=\1\5\0006\0\0\0009\0\6\0'\2\a\0B\0\2\1K\0\1\0[        colorscheme gruvbox-baby\n        highlight ColorColumn guibg=OrangeRed4\n      \bcmd\"gruvbox_baby_transparent_mode\1\3\0\0\vpacker\rterminal\21gruvbox_sidebars\29gruvbox_italic_functions\6g\bvim\0" },
+  gruvbox = {
+    config = { "\27LJ\2\n…\5\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0å\4        let g:gruvbox_contrast_dark = 'hard'\n        let g:gruvbox_invert_selection='0'\n        colorscheme gruvbox\n\n        highlight ColorColumn ctermbg=0 guibg=grey\n        hi SignColumn guibg=none\n        hi CursorLineNR guibg=None\n        highlight Normal guibg=none\n        highlight NormalFloat guibg=none\n        highlight FloatBorder guibg=#5eacd\n\n        \" highlight LineNr guifg=#ff8659\n        \" highlight LineNr guifg=#aed75f\n        highlight LineNr guifg=#5eacd3\n        highlight netrwDir guifg=#5eacd3\n        highlight qfFileName guifg=#aed75f\n        hi TelescopeBorder guifg=#5eacd\n      \bcmd\bvim\0" },
     loaded = true,
-    path = "/home/vt/.local/share/nvim/site/pack/packer/start/gruvbox-baby",
-    url = "https://github.com/luisiacc/gruvbox-baby"
+    path = "/home/vt/.local/share/nvim/site/pack/packer/start/gruvbox",
+    url = "https://github.com/gruvbox-community/gruvbox"
   },
   ["guihua.lua"] = {
     loaded = true,
@@ -238,10 +238,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: gruvbox-baby
-time([[Config for gruvbox-baby]], true)
-try_loadstring("\27LJ\2\nˆ\2\0\0\3\0\b\0\0176\0\0\0009\0\1\0+\1\2\0=\1\2\0006\0\0\0009\0\1\0005\1\4\0=\1\3\0006\0\0\0009\0\1\0)\1\1\0=\1\5\0006\0\0\0009\0\6\0'\2\a\0B\0\2\1K\0\1\0[        colorscheme gruvbox-baby\n        highlight ColorColumn guibg=OrangeRed4\n      \bcmd\"gruvbox_baby_transparent_mode\1\3\0\0\vpacker\rterminal\21gruvbox_sidebars\29gruvbox_italic_functions\6g\bvim\0", "config", "gruvbox-baby")
-time([[Config for gruvbox-baby]], false)
+-- Config for: gruvbox
+time([[Config for gruvbox]], true)
+try_loadstring("\27LJ\2\n…\5\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0å\4        let g:gruvbox_contrast_dark = 'hard'\n        let g:gruvbox_invert_selection='0'\n        colorscheme gruvbox\n\n        highlight ColorColumn ctermbg=0 guibg=grey\n        hi SignColumn guibg=none\n        hi CursorLineNR guibg=None\n        highlight Normal guibg=none\n        highlight NormalFloat guibg=none\n        highlight FloatBorder guibg=#5eacd\n\n        \" highlight LineNr guifg=#ff8659\n        \" highlight LineNr guifg=#aed75f\n        highlight LineNr guifg=#5eacd3\n        highlight netrwDir guifg=#5eacd3\n        highlight qfFileName guifg=#aed75f\n        hi TelescopeBorder guifg=#5eacd\n      \bcmd\bvim\0", "config", "gruvbox")
+time([[Config for gruvbox]], false)
 if should_profile then save_profiles() end
 
 end)

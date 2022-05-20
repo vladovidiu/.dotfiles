@@ -1069,10 +1069,15 @@ When NAME is provided, return the value associated to this key."
 
 (use-package sly
   :straight t
-  :disabled t
   :config
+  (setq sly-lisp-implementations
+		`(
+		  (roswell ("ros" "run"))
+		  (roswell-sbcl ("ros" "-L" "sbcl" "-Q" "-l" "~/.sbclrc" "run") :coding-system utf-8-unix)))
+  (setq sly-default-lisp 'roswell)
+  (setq sly-symbol-completion-mode t)
   (setq org-babel-lisp-eval-fn #'sly-eval)
-  (setq inferior-lisp-program "/usr/bin/clisp"))
+  (setq inferior-lisp-program "ros run"))
 
 (use-package slime
   :straight t
@@ -1232,27 +1237,61 @@ Enables `electric-indent-local-mode' in MODES.
 		lsp-ui-sideline-ignore-duplicate t))
 
 (use-package corfu
-  :disabled t
   :straight '(corfu :host github
 					:repo "minad/corfu"
 					:branch "main")
   :bind (:map corfu-map
-			  ("TAB" . corfu-complete)
-			  ("<backtab>" . corfu-previous))
+			  ("TAB" . corfu-next)
+			  ([tab] . corfu-next)
+			  ("S-TAB" . corfu-previous)
+			  ([backtab] . corfu-previous))
   :custom
   (corfu-cycle t)
   (corfu-auto t)
-  (corfu-auto-delay 0.1)
+  (corfu-auto-prefix 2)
+  (corfu-auto-delay 0)
+  (corfu-min-width 60)
+  (corfu-max-width 60)
+  (corfu-count 14)
+  (corfu-scroll-margin 4)
+  (corfu-echo-documentation 0.25)
+  (corfu-separator ?\s)
+  (corfu-quit-no-match 'separator)
   :hook ((prog-mode . corfu-mode)
 		 (shell-mode . corfu-mode)
 		 (org-mode . corfu-mode)
 		 (sly-mode . corfu-mode)
 		 (eshell-mode . corfu-mode))
   :config
-  (corfu-global-mode))
+  (global-corfu-mode 1))
+
+(use-package cape
+  :init
+  :after corfu
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
+  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
+
+(use-package kind-icon
+  :after corfu
+  :custom
+  (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
+(use-package corfu-doc
+  :straight '(corfu-doc :host github
+						:repo "galeo/corfu-doc"
+						:branch "main")
+  :custom
+  (corfu-doc-max-width 60)
+  (corfu-doc-max-height 20)
+  :hook ((corfu-mode . corfu-doc-mode)))
 
 (use-package company
   :after lsp-mode
+  :disabled t
   :init
   (global-company-mode)
   :bind (:map company-active-map
@@ -1269,6 +1308,7 @@ Enables `electric-indent-local-mode' in MODES.
 
 (use-package company-box
   :hook (company-mode . company-box-mode)
+  :disabled t
   :config
   (setq company-box-show-single-candidate t
 		company-box-backends-colors nil

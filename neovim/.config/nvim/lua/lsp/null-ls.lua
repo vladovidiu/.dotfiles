@@ -22,6 +22,7 @@ null_ls.setup({
 		formatting.prettier,
 		formatting.stylua,
 		formatting.rufo,
+		formatting.gofmt,
 		diagnostics.rubocop,
 	},
 	on_attach = function(client)
