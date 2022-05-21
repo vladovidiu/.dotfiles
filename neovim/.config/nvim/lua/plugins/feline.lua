@@ -122,25 +122,8 @@ components.active[1][3] = {
 	left_sep = " ",
 }
 
--- nvim-gps
-components.active[1][4] = {
-	provider = function()
-		return gps.get_location()
-	end,
-	enabled = function()
-		return gps.is_available()
-	end,
-	hl = {
-		fg = "white",
-		bg = "bg",
-		style = "bold",
-	},
-}
-
--- MIDDLE
-
 -- git branch
-components.active[2][1] = {
+components.active[1][4] = {
 	provider = "git_branch",
 	hl = {
 		fg = "yellow",
@@ -150,7 +133,7 @@ components.active[2][1] = {
 }
 
 -- diffAdd
-components.active[2][2] = {
+components.active[1][5] = {
 	provider = "git_diff_added",
 	hl = {
 		fg = "green",
@@ -159,7 +142,7 @@ components.active[2][2] = {
 	},
 }
 -- diffModfified
-components.active[2][3] = {
+components.active[1][6] = {
 	provider = "git_diff_changed",
 	hl = {
 		fg = "orange",
@@ -169,10 +152,27 @@ components.active[2][3] = {
 }
 
 -- diffRemove
-components.active[2][4] = {
+components.active[1][7] = {
 	provider = "git_diff_removed",
 	hl = {
 		fg = "red",
+		bg = "bg",
+		style = "bold",
+	},
+}
+
+-- MIDDLE
+
+-- nvim-gps
+components.active[2][1] = {
+	provider = function()
+		return gps.get_location()
+	end,
+	enabled = function()
+		return gps.is_available()
+	end,
+	hl = {
+		fg = "white",
 		bg = "bg",
 		style = "bold",
 	},
@@ -231,6 +231,7 @@ components.active[2][8] = {
 -- lsp name
 components.active[3][1] = {
 	provider = "lsp_client_names",
+	enabled = false,
 	hl = {
 		fg = "yellow",
 		bg = "bg",
@@ -252,6 +253,7 @@ components.active[3][2] = {
 
 		return icon
 	end,
+	enabled = false,
 	hl = function()
 		local val = {}
 		local filename = vim.fn.expand("%:t")
@@ -274,6 +276,7 @@ components.active[3][2] = {
 -- fileType
 components.active[3][3] = {
 	provider = "file_type",
+	enabled = false,
 	hl = function()
 		local val = {}
 		local filename = vim.fn.expand("%:t")
@@ -296,9 +299,7 @@ components.active[3][3] = {
 -- fileSize
 components.active[3][4] = {
 	provider = "file_size",
-	enabled = function()
-		return vim.fn.getfsize(vim.fn.expand("%:t")) > 0
-	end,
+	enabled = false,
 	hl = {
 		fg = "skyblue",
 		bg = "bg",
@@ -312,6 +313,7 @@ components.active[3][5] = {
 	provider = function()
 		return "" .. vim.bo.fileformat .. ""
 	end,
+	enabled = false,
 	hl = {
 		fg = "white",
 		bg = "bg",
