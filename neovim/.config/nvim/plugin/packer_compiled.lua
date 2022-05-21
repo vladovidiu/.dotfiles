@@ -109,10 +109,20 @@ _G.packer_plugins = {
     path = "/home/vt/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["feline.nvim"] = {
+    loaded = true,
+    path = "/home/vt/.local/share/nvim/site/pack/packer/start/feline.nvim",
+    url = "https://github.com/feline-nvim/feline.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/vt/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
+  },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/home/vt/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   ["go.nvim"] = {
     loaded = true,
@@ -135,10 +145,10 @@ _G.packer_plugins = {
     path = "/home/vt/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
   },
-  ["lualine.nvim"] = {
+  neogit = {
     loaded = true,
-    path = "/home/vt/.local/share/nvim/site/pack/packer/start/lualine.nvim",
-    url = "https://github.com/nvim-lualine/lualine.nvim"
+    path = "/home/vt/.local/share/nvim/site/pack/packer/start/neogit",
+    url = "https://github.com/TimUntersberger/neogit"
   },
   ["nlsp-settings.nvim"] = {
     loaded = true,
@@ -159,6 +169,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vt/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-colorizer.lua"] = {
+    loaded = true,
+    path = "/home/vt/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
+    url = "https://github.com/norcalli/nvim-colorizer.lua"
+  },
+  ["nvim-gps"] = {
+    loaded = true,
+    path = "/home/vt/.local/share/nvim/site/pack/packer/start/nvim-gps",
+    url = "https://github.com/SmiteshP/nvim-gps"
   },
   ["nvim-lsp-installer"] = {
     loaded = true,

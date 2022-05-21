@@ -30,3 +30,6 @@ set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", options)
 set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", options)
 set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", options)
 set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", options)
+
+-- neogit
+set_keymap("n", "<leader>gg", "<cmd>Neogit<CR>", options)

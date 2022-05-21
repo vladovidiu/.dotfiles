@@ -101,11 +101,6 @@ return packer.startup(function(use)
 
 	use({ "onsails/lspkind-nvim" })
 
-	use({
-		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-	})
-
 	-- Treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -129,4 +124,19 @@ return packer.startup(function(use)
 
 	-- rust
 	use("simrat39/rust-tools.nvim")
+
+	-- feline
+	use("feline-nvim/feline.nvim")
+
+	-- GPS
+	use("SmiteshP/nvim-gps")
+
+	-- gitsigns
+	use("lewis6991/gitsigns.nvim")
+
+	-- neogit
+	use("TimUntersberger/neogit")
+
+	-- Colorizer
+	use("norcalli/nvim-colorizer.lua")
 end)
