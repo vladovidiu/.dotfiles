@@ -5,8 +5,6 @@ local options = { silent = true }
 vim.g.mapleader = " "
 set_keymap("n", "<Space>", "")
 
-set_keymap("i", "jk", "<Esc>")
-
 set_keymap("n", "<leader><esc>", "<cmd>set nohls<cr>", options)
 
 -- Telescope

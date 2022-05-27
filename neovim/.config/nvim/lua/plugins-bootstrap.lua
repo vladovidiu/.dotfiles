@@ -41,6 +41,9 @@ packer.init({
 
 return packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" })
+
+	use("lewis6991/impatient.nvim")
+
 	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
 
@@ -108,6 +111,7 @@ return packer.startup(function(use)
 	})
 	use("p00f/nvim-ts-rainbow")
 	use("nvim-treesitter/playground")
+	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 
 	-- Notify
@@ -139,4 +143,15 @@ return packer.startup(function(use)
 
 	-- Colorizer
 	use("norcalli/nvim-colorizer.lua")
+
+	-- Comment
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	})
+
+	-- Better Escape
+	use("max397574/better-escape.nvim")
 end)
