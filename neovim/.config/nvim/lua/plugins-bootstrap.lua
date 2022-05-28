@@ -102,6 +102,10 @@ return packer.startup(function(use)
 		},
 	})
 
+	-- Telescope extensions
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+	use("nvim-telescope/telescope-packer.nvim")
+
 	use({ "onsails/lspkind-nvim" })
 
 	-- Treesitter
