@@ -12,7 +12,19 @@ telescope.setup({
 			case_mode = "smart_case",
 		},
 	},
-	defaults = { file_ignore_patterns = { "node_modules" } },
+	defaults = {
+		file_ignore_patterns = { "node_modules" },
+		vimgrep_arguments = {
+			"rg",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+		},
+		path_display = { "smart" },
+	},
 })
 
 telescope.load_extension("fzf")

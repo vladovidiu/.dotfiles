@@ -156,6 +156,9 @@ return packer.startup(function(use)
 		end,
 	})
 
+	-- Float Term
+	use("numToStr/FTerm.nvim")
+
 	-- Better Escape
 	use("max397574/better-escape.nvim")
 end)

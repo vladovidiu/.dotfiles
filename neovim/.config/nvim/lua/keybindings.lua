@@ -31,3 +31,7 @@ set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", options)
 
 -- neogit
 set_keymap("n", "<leader>gg", "<cmd>Neogit<CR>", options)
+
+-- Float term
+set_keymap("n", "<leader>tt", '<CMD>lua require("FTerm").toggle()<CR>')
+set_keymap("t", "<leader>tt", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
