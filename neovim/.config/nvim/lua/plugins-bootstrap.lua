@@ -161,4 +161,13 @@ return packer.startup(function(use)
 
 	-- Better Escape
 	use("max397574/better-escape.nvim")
+
+	-- Trouble.nvim
+	use({
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+		config = function()
+			require("trouble").setup({})
+		end,
+	})
 end)

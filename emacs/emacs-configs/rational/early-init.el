@@ -5,7 +5,7 @@
 (setq gc-cons-threshold (* 50 1000 1000))
 
 ;; Prefer loading newest compiled .el file
-(setq load-prefer-newer noninteractive)
+(setq load-prefer-newer 'noninteractive)
 
 ;; Native compilation settings
 (when (featurep 'native-compile)
@@ -29,6 +29,9 @@
 
 ;; Make the initial buffer load faster
 (setq initial-major-mode 'fundamental-mode)
+
+;; Loads a nice blue theme, avoids the white screen flash on startup.
+;; (load-theme 'deeper-blue t)
 
 ;; Declare the rational-config-path
 (defvar rational-config-path

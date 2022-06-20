@@ -35,3 +35,7 @@ set_keymap("n", "<leader>gg", "<cmd>Neogit<CR>", options)
 -- Float term
 set_keymap("n", "<leader>tt", '<CMD>lua require("FTerm").toggle()<CR>')
 set_keymap("t", "<leader>tt", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
+
+-- Trouble.nvim
+set_keymap("n", "<leader>xx", "<cmd>Trouble<CR>", options)
+set_keymap("n", "<leader>xq", "<cmd>Trouble quickfix<CR>", options)
