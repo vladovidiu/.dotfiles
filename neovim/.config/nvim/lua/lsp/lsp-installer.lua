@@ -3,10 +3,27 @@ if not status_ok then
 	return
 end
 
-local lspconfig = require("lspconfig")
-local servers = { "jsonls", "gopls", "sumneko_lua" }
+local go_status_ok, go = pcall(require, "go")
+if not go_status_ok then
+	return
+end
 
-require("go").setup({
+local rust_status_ok, rust_tools = pcall(require, "rust-tools")
+if not rust_status_ok then
+	return
+end
+
+local lspconfig = require("lspconfig")
+local servers = {
+	"jsonls",
+	"gopls",
+	"sumneko_lua",
+	"tsserver",
+	"rust_analyzer",
+	"taplo",
+}
+
+go.setup({
 	test_runner = "richgo",
 	run_in_floaterm = true,
 })
@@ -29,7 +46,13 @@ for _, server in pairs(servers) do
 		opts = vim.tbl_deep_extend("force", server_custom_opts, opts)
 	end
 
-	require("rust-tools").setup({})
+	if server == "rust_analyzer" then
+		local rust_opts = require("lsp.settings.rust")
+
+		rust_tools.setup(rust_opts)
+		goto continue
+	end
 
 	lspconfig[server].setup(opts)
+	::continue::
 end

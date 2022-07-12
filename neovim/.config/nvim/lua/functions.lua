@@ -16,3 +16,16 @@ end
 map("n", "<leader>ps", "", {
 	callback = packer_sync,
 })
+
+local set_cwdir = function()
+	async.run(function()
+		vim.notify.async("Setting current directory", "info", {
+			title = "Vim",
+		})
+	end)
+	vim.cmd("lcd %:p:h")
+end
+
+map("n", "<leader>cd", "", {
+	callback = set_cwdir,
+})

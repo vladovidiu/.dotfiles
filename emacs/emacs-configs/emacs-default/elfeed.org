@@ -30,6 +30,16 @@
 *** [[https://protesilaos.com/master.xml][Prot]]
 *** [[https://github.crookster.org/feed.xml][Crookster]]
 *** [[https://ag91.github.io/rss.xml][Andrea Corallo]]
+*** [[https://medium.com/feed/airbnb-engineering][AirBnB Engineering]]
+*** [[https://dropbox.tech/feed][Dropbox Engineering]]
+*** [[https://github.blog/category/engineering/feed/][GitHub Engineering]]
+*** [[https://engineering.linkedin.com/blog.rss.html][LinkedIn Engineering]]
+*** [[https://netflixtechblog.com/feed][Netflix Engineering]]
+*** [[https://www.reddit.com/r/RedditEng/.rss][Reddit Engineering]]
+*** [[https://engineering.atspotify.com/feed/][Spotify Engineering]]
+*** [[https://engineering.fb.com/feed/][Meta Engineering]]
+*** [[https://eng.uber.com/feed/][Uber Engineering]]
+*** [[https://slack.engineering/feed/][Slack Engineering]]
 ** Operating Systems                                                    :os:
 *** [[https://guix.gnu.org/feeds/blog.atom][Guix]]
 ** Programming Languages                                       :programming:

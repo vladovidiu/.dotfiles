@@ -42,7 +42,7 @@ M.setup = function()
 end
 
 local function lsp_highlight_document(client)
-	if client.resolved_capabilities.document_highlight then
+	if client.server_capabilities.documentFormattingProvider then
 		vim.api.nvim_exec(
 			[[
       augroup lsp_document_highlight
@@ -66,7 +66,7 @@ local function lsp_keymaps(bufnr, client)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting_sync()' ]])
+	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({ async = false })' ]])
 
 	if client.name == "gopls" then
 		vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gt", "<cmd>GoTest<CR>", opts)
@@ -75,8 +75,14 @@ local function lsp_keymaps(bufnr, client)
 end
 
 M.on_attach = function(client, bufnr)
-	if client.name == "tsserver" or client.name == "solargraph" or client.name == "gopls" then
-		client.resolved_capabilities.document_formatting = false
+	if
+		client.name == "tsserver"
+		or client.name == "solargraph"
+		or client.name == "gopls"
+		or client.name == "sumneko_lua"
+		or client.name == "jsonls"
+	then
+		client.server_capabilities.documentFormattingProvider = false
 	end
 
 	lsp_keymaps(bufnr, client)
