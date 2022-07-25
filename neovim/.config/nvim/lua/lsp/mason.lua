@@ -1,5 +1,10 @@
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
-if not status_ok then
+local mason_status_ok, mason = pcall(require, "mason")
+if not mason_status_ok then
+	return
+end
+
+local mason_lspconfig_status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not mason_lspconfig_status_ok then
 	return
 end
 
@@ -21,6 +26,7 @@ local servers = {
 	"tsserver",
 	"rust_analyzer",
 	"taplo",
+	"sumneko_lua",
 }
 
 go.setup({
@@ -28,7 +34,18 @@ go.setup({
 	run_in_floaterm = true,
 })
 
-lsp_installer.setup({
+mason.setup({
+	ui = {
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
+		},
+		border = "rounded",
+	},
+})
+
+mason_lspconfig.setup({
 	ensure_installed = servers,
 })
 

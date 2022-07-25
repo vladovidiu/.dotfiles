@@ -15,12 +15,14 @@ null_ls.setup({
 		formatting.stylua,
 		formatting.rufo,
 		formatting.gofmt,
+		formatting.rustfmt,
+
 		diagnostics.rubocop,
 		diagnostics.eslint,
 	},
 	on_attach = function(client)
 		if client.server_capabilities.documentFormattingProvider then
-			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ async = false })")
+			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ async = true })")
 		end
 	end,
 })

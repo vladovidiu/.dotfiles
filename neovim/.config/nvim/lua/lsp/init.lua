@@ -5,6 +5,6 @@ if not status_ok then
 end
 
 require("rust-tools").setup({})
-require("lsp.lsp-installer")
+require("lsp.mason")
 require("lsp.handlers").setup()
 require("lsp.null-ls")
