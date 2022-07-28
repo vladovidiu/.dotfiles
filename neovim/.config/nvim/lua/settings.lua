@@ -55,3 +55,5 @@ vim.cmd([[
 ]])
 
 DATA_PATH = vim.fn.stdpath("data")
+
+vim.g.cursorhold_updatetime = 100

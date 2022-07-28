@@ -80,6 +80,11 @@ _G.packer_plugins = {
     path = "/home/vt/.local/share/nvim/site/pack/packer/start/FTerm.nvim",
     url = "https://github.com/numToStr/FTerm.nvim"
   },
+  ["FixCursorHold.nvim"] = {
+    loaded = true,
+    path = "/home/vt/.local/share/nvim/site/pack/packer/start/FixCursorHold.nvim",
+    url = "https://github.com/antoinemadec/FixCursorHold.nvim"
+  },
   LuaSnip = {
     loaded = true,
     path = "/home/vt/.local/share/nvim/site/pack/packer/start/LuaSnip",
@@ -105,6 +110,11 @@ _G.packer_plugins = {
     path = "/home/vt/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
+  ["cmp-nvim-lsp-signature-help"] = {
+    loaded = true,
+    path = "/home/vt/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp-signature-help",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp-signature-help"
+  },
   ["cmp-nvim-lua"] = {
     loaded = true,
     path = "/home/vt/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
@@ -124,6 +134,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vt/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
+  },
+  ["dressing.nvim"] = {
+    config = { "\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rdressing\frequire\0" },
+    loaded = true,
+    path = "/home/vt/.local/share/nvim/site/pack/packer/start/dressing.nvim",
+    url = "https://github.com/stevearc/dressing.nvim"
   },
   ["feline.nvim"] = {
     loaded = true,
@@ -160,6 +176,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vt/.local/share/nvim/site/pack/packer/start/impatient.nvim",
     url = "https://github.com/lewis6991/impatient.nvim"
+  },
+  ["lsp-colors.nvim"] = {
+    loaded = true,
+    path = "/home/vt/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim",
+    url = "https://github.com/folke/lsp-colors.nvim"
   },
   ["lspkind-nvim"] = {
     loaded = true,
@@ -201,6 +222,11 @@ _G.packer_plugins = {
     path = "/home/vt/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-code-action-menu"] = {
+    loaded = true,
+    path = "/home/vt/.local/share/nvim/site/pack/packer/start/nvim-code-action-menu",
+    url = "https://github.com/weilbith/nvim-code-action-menu"
+  },
   ["nvim-colorizer.lua"] = {
     loaded = true,
     path = "/home/vt/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
@@ -210,6 +236,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vt/.local/share/nvim/site/pack/packer/start/nvim-gps",
     url = "https://github.com/SmiteshP/nvim-gps"
+  },
+  ["nvim-lightbulb"] = {
+    loaded = true,
+    path = "/home/vt/.local/share/nvim/site/pack/packer/start/nvim-lightbulb",
+    url = "https://github.com/kosayoda/nvim-lightbulb"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -305,18 +336,22 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: gruvbox
-time([[Config for gruvbox]], true)
-try_loadstring("\27LJ\2\n…\5\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0å\4        let g:gruvbox_contrast_dark = 'hard'\n        let g:gruvbox_invert_selection='0'\n        colorscheme gruvbox\n\n        highlight ColorColumn ctermbg=0 guibg=grey\n        hi SignColumn guibg=none\n        hi CursorLineNR guibg=None\n        highlight Normal guibg=none\n        highlight NormalFloat guibg=none\n        highlight FloatBorder guibg=#5eacd\n\n        \" highlight LineNr guifg=#ff8659\n        \" highlight LineNr guifg=#aed75f\n        highlight LineNr guifg=#5eacd3\n        highlight netrwDir guifg=#5eacd3\n        highlight qfFileName guifg=#aed75f\n        hi TelescopeBorder guifg=#5eacd\n      \bcmd\bvim\0", "config", "gruvbox")
-time([[Config for gruvbox]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
-time([[Config for trouble.nvim]], false)
 -- Config for: Comment.nvim
 time([[Config for Comment.nvim]], true)
 try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
 time([[Config for Comment.nvim]], false)
+-- Config for: gruvbox
+time([[Config for gruvbox]], true)
+try_loadstring("\27LJ\2\n…\5\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0å\4        let g:gruvbox_contrast_dark = 'hard'\n        let g:gruvbox_invert_selection='0'\n        colorscheme gruvbox\n\n        highlight ColorColumn ctermbg=0 guibg=grey\n        hi SignColumn guibg=none\n        hi CursorLineNR guibg=None\n        highlight Normal guibg=none\n        highlight NormalFloat guibg=none\n        highlight FloatBorder guibg=#5eacd\n\n        \" highlight LineNr guifg=#ff8659\n        \" highlight LineNr guifg=#aed75f\n        highlight LineNr guifg=#5eacd3\n        highlight netrwDir guifg=#5eacd3\n        highlight qfFileName guifg=#aed75f\n        hi TelescopeBorder guifg=#5eacd\n      \bcmd\bvim\0", "config", "gruvbox")
+time([[Config for gruvbox]], false)
+-- Config for: dressing.nvim
+time([[Config for dressing.nvim]], true)
+try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rdressing\frequire\0", "config", "dressing.nvim")
+time([[Config for dressing.nvim]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
+time([[Config for trouble.nvim]], false)
 if should_profile then save_profiles() end
 
 end)

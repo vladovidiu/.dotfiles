@@ -9,6 +9,8 @@ return {
 			})
 		end,
 		inlay_hints = {
+			show_variable_name = true,
+			show_parameter_hints = true,
 			parameter_hints_prefix = " ",
 			other_hints_prefix = " ",
 		},
@@ -18,6 +20,8 @@ return {
 			width = 60,
 			-- height = 30,
 		},
+		autoSetHints = true,
+		hover_with_actions = true,
 	},
 	server = {
 		cmd = { "/usr/bin/rust-analyzer" },
@@ -31,6 +35,19 @@ return {
 				},
 				checkOnSave = {
 					command = "clippy",
+				},
+				assist = {
+					importEnforceGranularity = true,
+					importPrefix = "crate",
+				},
+				cargo = {
+					allFeatures = true,
+				},
+				inlayHints = {
+					lifetimeElissionHints = {
+						enable = true,
+						useParameterNames = true,
+					},
 				},
 			},
 		},

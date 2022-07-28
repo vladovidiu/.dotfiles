@@ -80,6 +80,7 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-path") -- path completions
 	use("hrsh7th/cmp-nvim-lua")
 	use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/cmp-nvim-lsp-signature-help")
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
 	use("ray-x/cmp-treesitter") -- cmdline completions
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
@@ -171,4 +172,18 @@ return packer.startup(function(use)
 			require("trouble").setup({})
 		end,
 	})
+
+	-- ui improvements
+	use({
+		"stevearc/dressing.nvim",
+		config = function()
+			require("dressing").setup()
+		end,
+	})
+
+	use({ "kosayoda/nvim-lightbulb", requires = { "antoinemadec/FixCursorHold.nvim" } })
+
+	use("folke/lsp-colors.nvim")
+
+	use("weilbith/nvim-code-action-menu")
 end)
