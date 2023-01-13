@@ -2,6 +2,7 @@
 
 ;; Install dependencies
 (straight-use-package 'modus-themes)
+(straight-use-package '(ef-themes :type git :host github :repo "emacs-straight/ef-themes"))
 (straight-use-package 'helpful)
 (straight-use-package 'elisp-demos)
 (straight-use-package 'lin)
@@ -29,6 +30,20 @@
         tabulated-list-mode-hook))
 (lin-global-mode)
 
+;; Configure ef-themes
+(require 'ef-themes)
+(load-theme 'ef-autumn t t)
+(load-theme 'ef-dark t t)
+(load-theme 'ef-day t t)
+(load-theme 'ef-light t t)
+(load-theme 'ef-night t t)
+(load-theme 'ef-spring t t)
+(load-theme 'ef-summer t t)
+(load-theme 'ef-winter t t)
+
+;; Disable all other themes to avoid awkward blending:
+(mapc #'disable-theme custom-enabled-themes)
+
 ;; Configure modus-themes
 (setq modus-themes-completions  '((matches . (extrabold background))
                                   (selection . (semibold accented))
@@ -48,7 +63,7 @@
       modus-themes-region '(accented)
       )
 (require 'modus-themes)
-(modus-themes-load-vivendi)
+;; (modus-themes-load-vivendi)
 (global-set-key (kbd "<f5>") #'modus-themes-toggle)
 
 ;; Make `describe-*' screens more helpful!

@@ -5,7 +5,7 @@
 (setq gc-cons-threshold (* 50 1000 1000))
 
 ;; Prefer loading newest compiled .el file
-(setq load-prefer-newer 'noninteractive)
+(customize-set-variable 'load-prefer-newer noninteractive)
 
 ;; Native compilation settings
 (when (featurep 'native-compile)

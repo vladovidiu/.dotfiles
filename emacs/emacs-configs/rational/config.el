@@ -54,5 +54,6 @@
 (set-frame-parameter (selected-frame) 'alpha vt/frame-transparency)
 (add-to-list 'default-frame-alist `(alpha . ,vt/frame-transparency))
 
-(load-theme 'modus-vivendi t)
+;; (load-theme 'modus-vivendi t)
+(load-theme 'ef-day :no-confirm)
 ;;; config.el ends here

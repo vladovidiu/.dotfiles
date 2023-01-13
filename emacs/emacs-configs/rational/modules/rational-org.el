@@ -11,6 +11,8 @@
 (straight-use-package 'org-appear)
 (straight-use-package 'visual-fill-column)
 
+(require 'org)
+
 (defun vt/org-mode-visual-fill ()
   (setq visual-fill-column-width 100
         visual-fill-column-center-text t)

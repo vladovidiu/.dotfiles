@@ -6,11 +6,10 @@
 (straight-use-package 'corfu)
 (straight-use-package 'kind-icon)
 (straight-use-package 'cape)
-(straight-use-package '(corfu-doc :type git :host github :repo "galeo/corfu-doc"))
 
 ;; Settings
 (require 'corfu)
-(require 'corfu-doc)
+(require 'corfu-popupinfo "extensions/corfu-popupinfo.el")
 
 (customize-set-variable 'corfu-cycle t)
 (customize-set-variable 'corfu-auto t)
@@ -24,9 +23,7 @@
 (customize-set-variable 'corfu-separator ?\s)
 (customize-set-variable 'corfu-quit-no-match 'separator)
 
-(customize-set-variable 'corfu-doc-delay 0.5)
-(customize-set-variable 'corfu-doc-max-width 60)
-(customize-set-variable 'corfu-doc-max-height 20)
+(customize-set-variable 'corfu-popupinfo-delay '(0.5 . 0.5))
 
 ;; Start
 (global-corfu-mode 1)
@@ -36,8 +33,8 @@
 (define-key corfu-map [tab] 'corfu-next)
 (define-key corfu-map (kbd "S-TAB") 'corfu-previous)
 (define-key corfu-map [backtab] 'corfu-previous)
-(define-key corfu-map (kbd "M-p") #'corfu-doc-scroll-down)
-(define-key corfu-map (kbd "M-n") #'corfu-doc-scroll-up)
+(define-key corfu-map (kbd "M-p") #'corfu-popupinfo-scroll-down)
+(define-key corfu-map (kbd "M-n") #'corfu-popupinfo-scroll-up)
 (define-key corfu-map (kbd "M-SPC") #'corfu-insert-separator)
 
 ;; LSP integration
@@ -71,7 +68,8 @@
                             corfu-quit-no-match t
                             )
             (corfu-mode)))
-(add-hook 'corfu-mode-hook #'corfu-doc-mode)
+
+(add-hook 'corfu-mode-hook 'corfu-popupinfo-mode)
 
 (provide 'rational-corfu)
 ;;; rational-corfu.el ends here
