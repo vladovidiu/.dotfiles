@@ -11,7 +11,10 @@ return {
 	window_frame = window_frame,
 	window_background_opacity = 0.90,
 	text_background_opacity = 1.0,
-	font = wezterm.font("PragmataPro Mono Liga"),
+	font = wezterm.font_with_fallback({
+		"PragmataPro Mono Liga",
+		{ family = "Symbols Nerd Font Mono", scale = 0.7 },
+	}),
 	font_size = 18.0,
 	window_decorations = "RESIZE",
 	window_padding = {
