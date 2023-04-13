@@ -18,3 +18,5 @@ emacs/emacs-configs/rational/.lsp-session-v1
 
 emacs/emacs-configs/minimal
 emacs/emacs-configs/doom-emacs
+
+config/.config/lazygit/state.yml

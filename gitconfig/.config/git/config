@@ -4,6 +4,7 @@
   username = vladovidiu
 
 [core]
+  pager = delta
   editor = nvim
   commitgraph = true
 
@@ -12,6 +13,26 @@
 
 [diff]
   algorith = patience
+  compactionHeuristic = true
 
 [github]
   user = vladovidiu
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  features = side-by-side line-numbers decorations
+  navigate = true
+  whitespace-error-style = 22 reverse
+
+[delta-decorations]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+
+[push]
+  autoSetupRemote = true
+
+[init]
+  defaultBranch = main
