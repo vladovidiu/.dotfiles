@@ -17,7 +17,7 @@ function fish_hybrid_key_bindings --description \
 end
 set -g fish_key_bindings fish_hybrid_key_bindings
 
-set -Ux MAKEFLAGS "-J"(nproc)
+set -gx MAKEFLAGS -j(nproc)
 
 set -U FZF_CTRL_R_OPTS "--border-label=' History ' --prompt=' '"
 set -U FZF_DEFAULT_COMMAND "fd -H -E '.git'"
