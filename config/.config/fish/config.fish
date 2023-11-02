@@ -32,5 +32,15 @@ alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
 alias nvim-chad="NVIM_APPNAME=NvChad nvim"
 alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
 
+abbr -a g 'git'
+abbr -a ga 'git add'
+abbr -a gd 'git diff --color --color-words'
+abbr -a gst 'git status'
+abbr -a gco 'git checkout'
+abbr -a gcmsg 'git commit -m'
+abbr -a gp 'git push'
+abbr -a gfa 'git fetch --all'
+abbr -a gl 'git pull'
+
 starship init fish | source
 zoxide init fish | source
